@@ -15,6 +15,7 @@ $breakpoints: (phone_sm: 576px, //xs
         desktop_large: 1600px //xl
 );
 @import 'Home';
+@import 'auth';
 @import 'menu';
 @import 'rivalry';
 @import 'comments.scss';

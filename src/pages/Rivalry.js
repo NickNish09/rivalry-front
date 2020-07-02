@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Row, Tag, Tabs, Avatar } from "antd";
 import RivalCard from "../components/home/RivalCard";
 import {
@@ -18,6 +18,10 @@ const { Meta } = Card;
 const RivalryPage = () => {
   const [loading, setLoading] = useState(false);
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className={"container"}>
       <Card className={"rivalry-feed-card"} loading={loading}>
