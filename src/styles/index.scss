@@ -4,6 +4,7 @@ $primary_lighter: #152232;
 $secondary: #4787cc;
 $light: #a0b1c5;
 $lighter: #8596a5;
+$light_dark: #505963;
 
 @import '../../node_modules/antd/dist/antd.css';
 @import '~include-media/dist/include-media';
@@ -16,6 +17,7 @@ $breakpoints: (phone_sm: 576px, //xs
 @import 'Home';
 @import 'menu';
 @import 'rivalry';
+@import 'comments.scss';
 
 html, body {
   background-color: $primary;
@@ -23,6 +25,10 @@ html, body {
 
 *{
   font-family: 'Open Sans', sans-serif;
+}
+
+.ml-10{
+  margin-left: 10px;
 }
 
 .mt-5{
@@ -51,6 +57,14 @@ html, body {
 
 .d-flex{
   display: flex;
+}
+
+.f-row{
+  flex-direction: row;
+}
+
+.f-column{
+  flex-direction: column;
 }
 
 .align-items-center{

@@ -251,5 +251,21 @@
 }
 
 .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active, .ant-tabs-card.ant-tabs-top > div > .ant-tabs-nav .ant-tabs-tab-active{
-  border-bottom-color: $lighter;
+  border-bottom: 0;
+}
+
+.author-card{
+  background-color: $primary_light;
+  width: 100%;
+  margin-top: 1.5em;
+  border-color: $light;
+}
+
+.author-card div{
+  color: $light;
+}
+
+.author-card .ant-card-meta-description{
+  color: $lighter;
+  font-size: 12px;
 }

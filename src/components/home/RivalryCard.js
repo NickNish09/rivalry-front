@@ -8,6 +8,7 @@ import {
   FacebookOutlined,
   LikeOutlined,
   HeartFilled,
+  StarOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
@@ -24,7 +25,7 @@ const RivalryCard = ({ rivals, tags }) => {
                 <div className={"rivalry-like-card"}>
                   <RivalCard left url={rivals[0].url} name={rivals[0].name} />
                   <div className={"rivalry-like-row"}>
-                    <LikeOutlined className={"rivalry-like"} />
+                    <StarOutlined className={"rivalry-like"} />
                     <span className={"rivalry-likes-count"}>134.3k</span>
                   </div>
                 </div>
@@ -38,7 +39,7 @@ const RivalryCard = ({ rivals, tags }) => {
                 <div className={"rivalry-like-card"}>
                   <RivalCard url={rivals[1].url} name={rivals[1].name} />
                   <div>
-                    <LikeOutlined className={"rivalry-like"} />
+                    <StarOutlined className={"rivalry-like"} />
                     <span className={"rivalry-likes-count"}>112.9k</span>
                   </div>
                 </div>

@@ -1,0 +1,29 @@
+.comment-card{
+  margin: 1em 0;
+  background-color: $primary_lighter;
+  border-color: $light;
+  border-width: 1px;
+}
+
+.comment-card p{
+  color: $lighter;
+}
+
+.comment-user-nick{
+  margin-top: 0.5em;
+  color: $secondary;
+}
+
+.interactions-row{
+  margin-top: 0.5em;
+}
+
+.comment-like{
+  color: $light;
+  font-size: 15px;
+}
+
+.btn-like{
+  padding: 0;
+  color: $lighter;
+}

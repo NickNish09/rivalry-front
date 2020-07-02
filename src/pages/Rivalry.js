@@ -1,22 +1,25 @@
 import React, { useState } from "react";
-import { Card, Col, Row, Tag, Tabs } from "antd";
+import { Card, Col, Row, Tag, Tabs, Avatar } from "antd";
 import RivalCard from "../components/home/RivalCard";
 import {
   CloseOutlined,
   FacebookOutlined,
   HeartFilled,
   HeartOutlined,
-  LikeOutlined,
   TwitterOutlined,
+  StarOutlined,
 } from "@ant-design/icons";
+import CommentCard from "../components/rivalry/CommentCard";
 
 const { TabPane } = Tabs;
+const { Meta } = Card;
 
 const RivalryPage = () => {
+  const [loading, setLoading] = useState(false);
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   return (
     <div className={"container"}>
-      <Card className={"rivalry-feed-card"}>
+      <Card className={"rivalry-feed-card"} loading={loading}>
         <Row>
           <Col md={19}>
             <Row>
@@ -30,7 +33,7 @@ const RivalryPage = () => {
                     }
                   />
                   <div>
-                    <LikeOutlined className={"rivalry-like"} />
+                    <StarOutlined className={"rivalry-like"} />
                     <span className={"rivalry-likes-count"}>134.4k</span>
                   </div>
                 </div>
@@ -49,7 +52,7 @@ const RivalryPage = () => {
                     }
                   />
                   <div>
-                    <LikeOutlined className={"rivalry-like"} />
+                    <StarOutlined className={"rivalry-like"} />
                     <span className={"rivalry-likes-count"}>112.9k</span>
                   </div>
                 </div>
@@ -113,9 +116,20 @@ const RivalryPage = () => {
                       </p>
                     </TabPane>
                     <TabPane tab="Comments" key="2">
-                      <p>Content of Tab Pane 2</p>
-                      <p>Content of Tab Pane 2</p>
-                      <p>Content of Tab Pane 2</p>
+                      <CommentCard
+                        comment={"LIONEL >>> CR7 (5 bolas de ouro)"}
+                        replies={[
+                          {
+                            comment: "Ta na disney",
+                            replies: [
+                              { comment: "Ta na eurodisney", replies: [] },
+                            ],
+                          },
+                          { comment: "Ta na disney", replies: [] },
+                        ]}
+                        likes={"1.4k"}
+                      />
+                      <CommentCard comment={"Nem"} replies={[]} likes={"139"} />
                     </TabPane>
                     <TabPane tab="Other" key="3">
                       <p>Content of Tab Pane 3</p>
@@ -158,6 +172,17 @@ const RivalryPage = () => {
                   <Tag className={"rivalry-tag mb-5"}>Soccer</Tag>
                 </div>
               </Col>
+            </Row>
+            <Row>
+              <Card className={"author-card"}>
+                <Meta
+                  avatar={
+                    <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                  }
+                  title="NickNish"
+                  description="author"
+                />
+              </Card>
             </Row>
           </Col>
         </Row>
