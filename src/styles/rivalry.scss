@@ -1,5 +1,5 @@
 .rivalry-feed-card{
-  width: 70%;
+  width: 100%;
   margin-top: 16px;
   background-color: $primary_light;
   border-radius: 10px;
@@ -17,7 +17,7 @@
 }
 
 .rivalry-about-text{
-  padding: 1.2em;
+  padding: 1.2em 2.2em;
   color: $light;
 }
 
@@ -59,16 +59,16 @@
 }
 
 .rival-left{
-  height: 15em;
-  width: 18em;
+  height: 12em;
+  width: 15em;
   object-fit: cover;
   border-radius: 130px 50px 100px 60px;
   //border-radius: 50px 130px 60px 100px;
 }
 
 .rival-right{
-  height: 15em;
-  width: 18em;
+  height: 12em;
+  width: 15em;
   object-fit: cover;
   //border-radius: 130px 50px 100px 60px;
   border-radius: 50px 130px 60px 100px;

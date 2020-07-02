@@ -26,24 +26,19 @@ const RivalryCard = () => {
         </div>
         <div className={"rivalry-about-card"}>
           <p className={"rivalry-time"}>3 hours ago</p>
+          <p className={"rivalry-about-text"}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
+            ligula erat, aliquet ac lectus eu, ultrices viverra ex. Maecenas
+            erat metus, auctor vitae vestibulum eu, auctor et nunc. Quisque
+            auctor auctor purus. Duis aliquet mi ut auctor sollicitudin.
+            Maecenas nec tortor a ipsum hendrerit pharetra. Nulla cursus nulla
+            et efficitur blandit. Nunc aliquam justo facilisis, auctor libero
+            non, convallis turpis...
+          </p>
+          <Button className={"rivalry-keep-reading-btn"}>Keep Reading</Button>
         </div>
       </div>
-      <div className={"rivalry-about-card"}>
-        <p className={"rivalry-about-text"}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ligula
-          erat, aliquet ac lectus eu, ultrices viverra ex. Maecenas erat metus,
-          auctor vitae vestibulum eu, auctor et nunc. Quisque auctor auctor
-          purus. Duis aliquet mi ut auctor sollicitudin. Maecenas nec tortor a
-          ipsum hendrerit pharetra. Nulla cursus nulla et efficitur blandit.
-          Nunc aliquam justo facilisis, auctor libero non, convallis turpis.
-          Vestibulum eleifend neque quis ante lacinia tristique. Nullam tempor,
-          nibh vel facilisis posuere, magna augue tincidunt magna, nec sodales
-          odio est a dui. Duis ipsum nulla, commodo a volutpat malesuada,
-          pharetra at orci. Donec dapibus mi non pulvinar sodales. Vivamus ut
-          aliquam magna. Curabitur vestibulum enim vel venenatis iaculis...
-        </p>
-        <Button className={"rivalry-keep-reading-btn"}>Keep Reading</Button>
-      </div>
+      <div className={"rivalry-about-card"}></div>
     </Card>
   );
 };
