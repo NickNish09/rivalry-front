@@ -20,7 +20,7 @@ const Header = () => {
 
         <div>
           <Button type={"link"}>
-            <SearchOutlined />
+            <SearchOutlined className={"menu-search-icon"} />
           </Button>
           <Link to={"/login"} className={"menu-login"}>
             Login

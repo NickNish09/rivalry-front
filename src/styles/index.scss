@@ -1,18 +1,20 @@
+$primary: #0b1622;
+$primary_light: #151f2e;
+$primary_lighter: #152232;
+$secondary: #4787cc;
+$light: #a0b1c5;
+$lighter: #8596a5;
 @import '../../node_modules/antd/dist/antd.css';
 @import 'Home';
-$primary: #1e4791;
-$light: #ebebeb;
+@import 'menu';
+@import 'rivalry';
+
+html, body {
+  background-color: $primary;
+}
 
 *{
   font-family: 'Open Sans', sans-serif;
-}
-
-.menu-navbar{
-  padding: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: $primary;
 }
 
 .styles_header__3PFGX{
@@ -27,13 +29,6 @@ $light: #ebebeb;
 
 .container{
   height: 150vh;
+  margin: 0 15em;
 }
 
-.menu-links a{
-  margin: 0 1em;
-  color: $light;
-}
-
-.menu-login{
-  color: $light
-}

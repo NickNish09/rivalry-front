@@ -1,0 +1,82 @@
+.rivalry-feed-card{
+  width: 70%;
+  margin-top: 16px;
+  background-color: $primary_light;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+.rivalry-rivals{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.rivalry-about-card{
+  display: grid;
+}
+
+.rivalry-about-text{
+  padding: 1.2em;
+  color: $light;
+}
+
+.rivalry-keep-reading-btn{
+  width: 33%;
+  justify-self: flex-end;
+  background-color: $primary;
+  color: $lighter;
+  border-color: $primary_lighter;
+  border-radius: 5px;
+}
+
+.rivalry-keep-reading-btn:hover{
+  background-color: $primary_light;
+  border-color: $secondary;
+  color: $secondary;
+}
+
+.rivalry-card{
+  display: flex;
+  justify-content: space-between;
+}
+
+.rivalry-cross{
+  font-size: 35px;
+  z-index: 1;
+  color: $light;
+}
+
+.rivalry-time{
+  color: $lighter;
+  font-size: 15px;
+  justify-self: flex-end;
+}
+
+.rival-card{
+  align-items: center;
+  justify-content: center;
+}
+
+.rival-left{
+  height: 15em;
+  width: 18em;
+  object-fit: cover;
+  border-radius: 130px 50px 100px 60px;
+  //border-radius: 50px 130px 60px 100px;
+}
+
+.rival-right{
+  height: 15em;
+  width: 18em;
+  object-fit: cover;
+  //border-radius: 130px 50px 100px 60px;
+  border-radius: 50px 130px 60px 100px;
+}
+
+.rival-name{
+  color: $light;
+  font-size: 21px;
+  margin-top: 0.75rem;
+  text-align: center;
+}

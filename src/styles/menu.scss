@@ -1,0 +1,21 @@
+.menu-navbar{
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $primary_lighter;
+}
+
+.menu-links a{
+  margin: 0 1em;
+  color: $light;
+}
+
+.menu-login{
+  color: $light
+}
+
+.menu-search-icon{
+  font-size: 18px;
+  color: $light;
+}

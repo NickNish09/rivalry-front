@@ -1,9 +1,10 @@
 import React from "react";
+import RivalryCard from "../components/home/RivalryCard";
 
 const Home = () => {
   return (
     <div className={"container"}>
-      <h1>Home</h1>
+      <RivalryCard />
     </div>
   );
 };
