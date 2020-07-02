@@ -9,6 +9,7 @@ import {
   LikeOutlined,
   HeartFilled,
 } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const RivalryCard = ({ rivals, tags }) => {
   const [loading, setLoading] = useState(false);
@@ -84,7 +85,7 @@ const RivalryCard = ({ rivals, tags }) => {
                 ))}
               </div>
               <Button className={"rivalry-keep-reading-btn"}>
-                Keep Reading
+                <Link to={`/rivalry/oe21l9eka9s`}>Keep Reading</Link>
               </Button>
             </div>
           </Col>

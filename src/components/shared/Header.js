@@ -16,7 +16,7 @@ const Header = () => {
         <div className={"menu-links"}>
           <Link to="/">Home</Link>
           <Link to="/app">Trending</Link>
-          <Link to="/app">Quizes</Link>
+          <Link to="/app">Top Rivalries</Link>
           <Link to="/app">Create</Link>
         </div>
 
