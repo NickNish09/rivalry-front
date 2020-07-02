@@ -1,0 +1,39 @@
+@import '../../node_modules/antd/dist/antd.css';
+@import 'Home';
+$primary: #1e4791;
+$light: #ebebeb;
+
+*{
+  font-family: 'Open Sans', sans-serif;
+}
+
+.menu-navbar{
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: $primary;
+}
+
+.styles_header__3PFGX{
+  background-color: #242c45;
+}
+
+.logo-img{
+  height: 5em;
+  width: 5em;
+  object-fit: contain;
+}
+
+.container{
+  height: 150vh;
+}
+
+.menu-links a{
+  margin: 0 1em;
+  color: $light;
+}
+
+.menu-login{
+  color: $light
+}

@@ -1,14 +1,15 @@
 import React from "react";
 
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
+import Header from "../components/shared/Header";
 
 const Routes = () => (
   <BrowserRouter>
     <div>
-      <h1>Navbar</h1>
+      <Header />
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path={"/login"} component={Login} />

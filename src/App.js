@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/App.scss";
+import "./styles/index.scss";
 import Routes from "./helpers/routes";
 
 const App = () => <Routes />;
