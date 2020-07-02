@@ -8,3 +8,5 @@ export const baseURL = dev_url;
 const api = axios.create({
   baseURL,
 });
+
+export default api;
