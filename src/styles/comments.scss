@@ -14,6 +14,11 @@
   color: $secondary;
 }
 
+.comment-text-area{
+  background-color: $primary;
+  color: $light;
+}
+
 .interactions-row{
   margin-top: 0.5em;
 }
@@ -26,4 +31,13 @@
 .btn-like{
   padding: 0;
   color: $lighter;
+}
+
+.send-btn{
+  align-self: flex-end;
+  justify-self: flex-end;
+  margin-top: .4em;
+  background-color: $primary_light;
+  color: $light;
+  border-color: $light;
 }

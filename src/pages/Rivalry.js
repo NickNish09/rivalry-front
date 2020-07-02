@@ -10,6 +10,7 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import CommentCard from "../components/rivalry/CommentCard";
+import MakeComment from "../components/rivalry/MakeComment";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -116,6 +117,7 @@ const RivalryPage = () => {
                       </p>
                     </TabPane>
                     <TabPane tab="Comments" key="2">
+                      <MakeComment />
                       <CommentCard
                         comment={"LIONEL >>> CR7 (5 bolas de ouro)"}
                         replies={[
