@@ -4,7 +4,15 @@ $primary_lighter: #152232;
 $secondary: #4787cc;
 $light: #a0b1c5;
 $lighter: #8596a5;
+
 @import '../../node_modules/antd/dist/antd.css';
+@import '~include-media/dist/include-media';
+$breakpoints: (phone_sm: 576px, //xs
+        phone: 768px, //sm
+        tablet: 992px, //md
+        desktop: 1200px, //lg
+        desktop_large: 1600px //xl
+);
 @import 'Home';
 @import 'menu';
 @import 'rivalry';
@@ -30,5 +38,27 @@ html, body {
 .container{
   height: 150vh;
   margin: 0 15em;
+
+  @include media("<phone") {
+    margin: 0 15px;
+  }
+
+  @include media(">=phone", "<tablet") {
+    margin: 0 55px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @include media(">=tablet", "<desktop") {
+    margin: 0 155px;
+  }
+
+  @include media(">=desktop", "<desktop_large") {
+    margin: 0 185px;
+  }
+
+  @include media(">=desktop_large") {
+    margin: 0 205px;
+  }
 }
 

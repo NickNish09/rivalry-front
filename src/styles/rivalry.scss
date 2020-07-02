@@ -14,10 +14,12 @@
 
 .rivalry-about-card{
   display: grid;
+  @include media(">=desktop") {
+    padding: 1.3em;
+  }
 }
 
 .rivalry-about-text{
-  padding: 1.2em 2.2em;
   color: $light;
 }
 
@@ -28,6 +30,10 @@
   color: $lighter;
   border-color: $primary_lighter;
   border-radius: 5px;
+
+  @include media("<=phone") {
+    width: 50%;
+  }
 }
 
 .rivalry-keep-reading-btn:hover{
@@ -36,9 +42,11 @@
   color: $secondary;
 }
 
-.rivalry-card{
+.rivalry-cross-container{
+  height: 100%;
+  align-items: center;
+  justify-content: center;
   display: flex;
-  justify-content: space-between;
 }
 
 .rivalry-cross{
@@ -50,10 +58,12 @@
 .rivalry-time{
   color: $lighter;
   font-size: 15px;
-  justify-self: flex-end;
+  justify-self: flex-start;
 }
 
 .rival-card{
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -64,6 +74,7 @@
   object-fit: cover;
   border-radius: 130px 50px 100px 60px;
   //border-radius: 50px 130px 60px 100px;
+
 }
 
 .rival-right{
