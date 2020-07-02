@@ -7,10 +7,12 @@ import {
   TwitterOutlined,
   FacebookOutlined,
   LikeOutlined,
+  HeartFilled,
 } from "@ant-design/icons";
 
 const RivalryCard = ({ rivals, tags }) => {
   const [loading, setLoading] = useState(false);
+  const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   return (
     <Card className={"rivalry-feed-card"} loading={loading}>
       <div className={"rivalry-card"}>
@@ -48,7 +50,17 @@ const RivalryCard = ({ rivals, tags }) => {
                 <div
                   className={"d-flex align-items-center justify-content-center"}
                 >
-                  <HeartOutlined className={"rivalry-icon"} />
+                  {hasLikedRivalry ? (
+                    <HeartFilled
+                      className={"rivalry-icon"}
+                      onClick={() => setHasLikedRivlary(false)}
+                    />
+                  ) : (
+                    <HeartOutlined
+                      className={"rivalry-icon"}
+                      onClick={() => setHasLikedRivlary(true)}
+                    />
+                  )}
                   <span className={"rivalry-heart-count"}>295.5k</span>
                 </div>
                 <div>
@@ -65,11 +77,11 @@ const RivalryCard = ({ rivals, tags }) => {
                 nulla et efficitur blandit. Nunc aliquam justo facilisis, auctor
                 libero non, convallis turpis...
               </p>
-              <p className={"rivalry-time"}>3 hours ago</p>
+              {/*<p className={"rivalry-time"}>3 hours ago</p>*/}
               <div className={"rivalry-tags"}>
-                <Tag className={"rivalry-tag"}>sports</Tag>
-                <Tag className={"rivalry-tag"}>football</Tag>
-                <Tag className={"rivalry-tag"}>fifa</Tag>
+                {tags.map((tag) => (
+                  <Tag className={"rivalry-tag"}>{tag}</Tag>
+                ))}
               </div>
               <Button className={"rivalry-keep-reading-btn"}>
                 Keep Reading
