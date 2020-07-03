@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Header from "../components/shared/Header";
 import RivalryPage from "../pages/Rivalry";
+import NewRivalry from "../pages/NewRivalry";
 
 const Routes = () => (
   <BrowserRouter>
@@ -16,6 +17,7 @@ const Routes = () => (
         <Route path={"/login"} component={Login} />
         <Route path={"/rivalry"} component={RivalryPage} />
         <PrivateRoute path={"/app"} component={() => <h1>logado</h1>} />
+        <PrivateRoute path={"/create"} component={NewRivalry} />
       </Switch>
     </div>
   </BrowserRouter>
