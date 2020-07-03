@@ -6,7 +6,6 @@ import {
   HeartOutlined,
   TwitterOutlined,
   FacebookOutlined,
-  LikeOutlined,
   HeartFilled,
   StarOutlined,
 } from "@ant-design/icons";

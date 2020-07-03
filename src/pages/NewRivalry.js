@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Card, Col, Row, Tag, Tabs, Avatar, Button } from "antd";
-import RivalCard from "../components/home/RivalCard";
+import EditRivalCard from "../components/rivalry/EditRivalCard";
 import {
   CloseOutlined,
   FacebookOutlined,
@@ -35,7 +35,7 @@ const NewRivalry = () => {
             <Row>
               <Col lg={11} md={11} sm={11} xs={24}>
                 <div className={"rivalry-like-card"}>
-                  <RivalCard
+                  <EditRivalCard
                     name={"Lionel Messi"}
                     left
                     url={
@@ -55,7 +55,7 @@ const NewRivalry = () => {
               </Col>
               <Col lg={11} md={11} sm={11} xs={24}>
                 <div className={"rivalry-like-card"}>
-                  <RivalCard
+                  <EditRivalCard
                     name={"Cristiano Ronaldo"}
                     url={
                       "https://www.lance.com.br/files/article_main/uploads/2020/01/06/5e1354f9249d1.jpeg"

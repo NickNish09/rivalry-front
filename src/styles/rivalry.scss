@@ -182,6 +182,51 @@
   }
 }
 
+.rival-edit-image {
+  opacity: 1;
+  display: block;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.edit-image-container:hover .rival-edit-image {
+  opacity: 0.3;
+}
+
+.edit-image-container:hover .middle {
+  opacity: 1;
+}
+
+.edit-rival-name-input input{
+  border-color: $primary;
+  background-color: $primary;
+  margin: 1em 0;
+  color: $light;
+  text-align: center;
+}
+
+.edit-rival-name-input input::placeholder {
+  color: $secondary;
+}
+
+.text {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+
 .tabs-container{
   display: flex;
   align-items: center;
