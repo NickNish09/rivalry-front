@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Card, Col, Row, Tag, Tabs, Avatar } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+import { Card, Col, Row, Tag, Tabs, Avatar, Button } from "antd";
 import RivalCard from "../components/home/RivalCard";
 import {
   CloseOutlined,
@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import "jodit";
 import JoditEditor from "jodit-react";
+import NewTags from "../components/rivalry/NewTags";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -17,10 +18,15 @@ const { Meta } = Card;
 const NewRivalry = () => {
   const [loading, setLoading] = useState(false);
   const [about, setAbout] = useState("");
+  const inputEl = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const sendCreateRivalryRequest = () => {
+    console.log(inputEl.current.value);
+  };
   return (
     <div className={"container"}>
       <Card className={"rivalry-feed-card"} loading={loading}>
@@ -86,7 +92,6 @@ const NewRivalry = () => {
                       {/*  }}*/}
                       {/*/>*/}
                       <JoditEditor
-                        value={about}
                         config={{
                           readonly: false, // all options from https://xdsoft.net/jodit/play.html
                           theme: "dark",
@@ -94,8 +99,8 @@ const NewRivalry = () => {
                             insertImageAsBase64URI: true,
                           },
                         }}
-                        onChange={(value) => console.log(value)}
                         theme={"summer"}
+                        ref={inputEl}
                       />
                     </TabPane>
                   </Tabs>
@@ -118,10 +123,7 @@ const NewRivalry = () => {
             <Row>
               <Col>
                 <div className={""}>
-                  <Tag className={"rivalry-tag mb-5"}>Sports</Tag>
-                  <Tag className={"rivalry-tag mb-5"}>Football</Tag>
-                  <Tag className={"rivalry-tag mb-5"}>Fifa</Tag>
-                  <Tag className={"rivalry-tag mb-5"}>Soccer</Tag>
+                  <NewTags />
                 </div>
               </Col>
             </Row>
@@ -135,6 +137,9 @@ const NewRivalry = () => {
                   description="author"
                 />
               </Card>
+              <Button className={"btn-send"} onClick={sendCreateRivalryRequest}>
+                Create Rivalry!
+              </Button>
             </Row>
           </Col>
         </Row>

@@ -21,6 +21,7 @@ $breakpoints: (phone_sm: 576px, //xs
 @import 'rivalry';
 @import 'comments.scss';
 @import 'jodit.scss';
+@import 'create.scss';
 
 html, body {
   background-color: $primary;

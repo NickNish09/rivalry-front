@@ -1,0 +1,27 @@
+.btn-send{
+  background-color: $primary;
+  border-color: $primary;
+  color: $light;
+  height: 5em;
+  width: 100%;
+  margin: 1.5em 1em;
+}
+
+.btn-send:hover{
+  background-color: $lighter;
+  border-color: $primary;
+  color: $primary;
+}
+
+.plus-tag{
+  color: $light;
+}
+
+.tag-input{
+  background-color: $primary;
+  color: $lighter;
+}
+
+.ant-tag-close-icon{
+  color: $light;
+}
