@@ -81,8 +81,10 @@ const RivalryCard = ({ rivals, tags }) => {
               </p>
               {/*<p className={"rivalry-time"}>3 hours ago</p>*/}
               <div className={"rivalry-tags"}>
-                {tags.map((tag) => (
-                  <Tag className={"rivalry-tag"}>{tag}</Tag>
+                {tags.map((tag, index) => (
+                  <Tag key={index.toString()} className={"rivalry-tag"}>
+                    {tag}
+                  </Tag>
                 ))}
               </div>
               <Button className={"rivalry-keep-reading-btn"}>

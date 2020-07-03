@@ -137,11 +137,6 @@ const RivalryPage = () => {
                       />
                       <CommentCard comment={"Nem"} replies={[]} likes={"139"} />
                     </TabPane>
-                    <TabPane tab="Other" key="3">
-                      <p>Content of Tab Pane 3</p>
-                      <p>Content of Tab Pane 3</p>
-                      <p>Content of Tab Pane 3</p>
-                    </TabPane>
                   </Tabs>
                 </div>
               </div>
