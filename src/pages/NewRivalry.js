@@ -35,13 +35,7 @@ const NewRivalry = () => {
             <Row>
               <Col lg={11} md={11} sm={11} xs={24}>
                 <div className={"rivalry-like-card"}>
-                  <EditRivalCard
-                    name={"Lionel Messi"}
-                    left
-                    url={
-                      "https://images.daznservices.com/di/library/GOAL/e2/a2/lionel-messi-barcelona-2019-20_6v9f1g8ktz0516nmdti9iowmc.jpg?t=-1288858400&quality=100"
-                    }
-                  />
+                  <EditRivalCard left />
                   <div>
                     <StarOutlined className={"rivalry-like"} />
                     <span className={"rivalry-likes-count"}>0</span>
@@ -55,12 +49,7 @@ const NewRivalry = () => {
               </Col>
               <Col lg={11} md={11} sm={11} xs={24}>
                 <div className={"rivalry-like-card"}>
-                  <EditRivalCard
-                    name={"Cristiano Ronaldo"}
-                    url={
-                      "https://www.lance.com.br/files/article_main/uploads/2020/01/06/5e1354f9249d1.jpeg"
-                    }
-                  />
+                  <EditRivalCard />
                   <div>
                     <StarOutlined className={"rivalry-like"} />
                     <span className={"rivalry-likes-count"}>0</span>

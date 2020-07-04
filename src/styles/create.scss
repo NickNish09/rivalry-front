@@ -25,3 +25,15 @@
 .ant-tag-close-icon{
   color: $light;
 }
+
+.rival-edit-file {
+  display: none;
+}
+.custom-file-upload {
+  border: 1px solid $light;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  background-color: $primary;
+  color: $light;
+}
