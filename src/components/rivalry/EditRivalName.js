@@ -42,14 +42,17 @@ const options = [
   },
 ];
 
-const EditRivalName = ({ setAvatar }) => (
+const EditRivalName = ({ setAvatar, setRivalName }) => (
   <AutoComplete
     dropdownClassName="certain-category-search-dropdown"
     dropdownMatchSelectWidth={500}
     options={options}
     className={"edit-rival-name-input"}
-    onChange={(e) => console.log(e)}
-    onSelect={(e) => setAvatar(e[1])}
+    onChange={(e) => setRivalName(e)}
+    onSelect={(e) => {
+      setAvatar(e[1]);
+      setRivalName(e[0]);
+    }}
   >
     <Input size="middle" placeholder="Search for a rival or create new..." />
   </AutoComplete>

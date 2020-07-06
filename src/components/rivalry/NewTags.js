@@ -1,18 +1,23 @@
 import React from "react";
 import { Tag, Input, Tooltip } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
+import { NewRivalryContext } from "../../contexts/NewRivalryContext";
 
 class NewTags extends React.Component {
+  static contextType = NewRivalryContext;
   state = {
-    tags: [],
     inputVisible: false,
     inputValue: "",
     editInputIndex: -1,
     editInputValue: "",
   };
 
+  componentDidMount() {
+    console.log(this.context);
+  }
+
   handleClose = (removedTag) => {
-    const tags = this.state.tags.filter((tag) => tag !== removedTag);
+    const tags = this.context.tags.filter((tag) => tag !== removedTag);
     console.log(tags);
     this.setState({ tags });
   };
@@ -27,16 +32,16 @@ class NewTags extends React.Component {
 
   handleInputConfirm = () => {
     const { inputValue } = this.state;
-    let { tags } = this.state;
+    let { tags } = this.context;
     if (inputValue && tags.indexOf(inputValue) === -1) {
       tags = [...tags, inputValue];
     }
     console.log(tags);
     this.setState({
-      tags,
       inputVisible: false,
       inputValue: "",
     });
+    this.context.setTags(tags);
   };
 
   handleEditInputChange = (e) => {
@@ -44,12 +49,12 @@ class NewTags extends React.Component {
   };
 
   handleEditInputConfirm = () => {
-    this.setState(({ tags, editInputIndex, editInputValue }) => {
-      const newTags = [...tags];
+    this.setState(({ editInputIndex, editInputValue }) => {
+      const newTags = [...this.context.tags];
       newTags[editInputIndex] = editInputValue;
 
+      this.context.setTags(newTags);
       return {
-        tags: newTags,
         editInputIndex: -1,
         editInputValue: "",
       };
@@ -66,12 +71,12 @@ class NewTags extends React.Component {
 
   render() {
     const {
-      tags,
       inputVisible,
       inputValue,
       editInputIndex,
       editInputValue,
     } = this.state;
+    const { tags } = this.context;
     return (
       <>
         {tags.map((tag, index) => {

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import EditRivalName from "./EditRivalName";
+import { useNewRivalry } from "../../contexts/NewRivalryContext";
 
 const EditRivalCard = ({ left }) => {
   const [avatar, setAvatar] = useState(
@@ -8,6 +9,24 @@ const EditRivalCard = ({ left }) => {
   );
   const [pictureUrl, setPictureUrl] = useState(""); //send it to the backend
   const [pictureName, setPictureName] = useState("");
+  const [rivalName, setRivalName] = useState("");
+  const { setRivals } = useNewRivalry();
+
+  const rival = () => {
+    return {
+      name: rivalName,
+      image_url: pictureUrl,
+    };
+  };
+
+  useEffect(() => {
+    console.log(rival());
+    if (left) {
+      setRivals(rival(), 0);
+    } else {
+      setRivals(rival(), 1);
+    }
+  }, [rival()]);
 
   const onDrop = (picture) => {
     console.log(picture);
@@ -34,7 +53,7 @@ const EditRivalCard = ({ left }) => {
               : "rival-right rival-edit-image"
           }
         />
-        <EditRivalName setAvatar={setAvatar} />
+        <EditRivalName setAvatar={setAvatar} setRivalName={setRivalName} />
         <div className="middle">
           <label
             htmlFor={`file-upload-${left ? "left" : "right"}`}

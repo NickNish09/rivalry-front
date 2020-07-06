@@ -11,21 +11,52 @@ import {
 import "jodit";
 import JoditEditor from "jodit-react";
 import NewTags from "../components/rivalry/NewTags";
+import { useNewRivalry } from "../contexts/NewRivalryContext";
+import api from "../services/api";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
 
 const NewRivalry = () => {
   const [loading, setLoading] = useState(false);
-  const [about, setAbout] = useState("");
   const inputEl = useRef(null);
+  const { tags, setTags, rivals, setRivals } = useNewRivalry();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const resetState = () => {
+    setTags([]);
+    setRivals([]);
+    inputEl.current.value = "";
+  };
+
   const sendCreateRivalryRequest = () => {
-    console.log(inputEl.current.value);
+    let about = inputEl.current.value;
+    console.log(about);
+    console.log(tags);
+    console.log(rivals);
+
+    if (about !== "" && rivals !== [] && tags !== []) {
+      api.defaults.headers.Authorization =
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjY4NTczNDdjMDNlMjg3ODk2MDkyNCIsImlhdCI6MTU5MzM3MDI2OSwiZXhwIjoxNjc5NjgzODY5fQ.bRyUu-Ox5TGmNJlJ0nOKqEmpBJTdMEmNDoVZo5_2rKM";
+      api
+        .post("/rivalries", {
+          about,
+          rivals,
+          tags,
+        })
+        .then((response) => {
+          console.log(response.data);
+          resetState();
+        })
+        .catch((err) => {
+          console.log(err.response);
+        });
+    } else {
+      console.log("preencha tudo");
+    }
   };
   return (
     <div className={"container"}>
