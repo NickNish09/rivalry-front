@@ -6,7 +6,7 @@ const EditRivalCard = ({ left }) => {
   const [avatar, setAvatar] = useState(
     "https://instantmockup.herokuapp.com/images/default-placeholder.png"
   );
-  const [pictureUrl, setPictureUrl] = useState("");
+  const [pictureUrl, setPictureUrl] = useState(""); //send it to the backend
   const [pictureName, setPictureName] = useState("");
 
   const onDrop = (picture) => {
