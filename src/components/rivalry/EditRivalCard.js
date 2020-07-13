@@ -21,7 +21,6 @@ const EditRivalCard = ({ left }) => {
   };
 
   useEffect(() => {
-    console.log(rival());
     if (left) {
       setRivals(rival(), 0);
     } else {
@@ -30,12 +29,10 @@ const EditRivalCard = ({ left }) => {
   }, [rival()]);
 
   const onDrop = (picture) => {
-    console.log(picture);
     setPictureName(picture.name);
     let reader = new FileReader();
     reader.readAsDataURL(picture);
     reader.onloadend = function (e) {
-      console.log(reader.result);
       let strImage = reader.result.replace(/^data:image\/[a-z]+;base64,/, "");
       setPictureUrl(strImage);
       setAvatar(reader.result);

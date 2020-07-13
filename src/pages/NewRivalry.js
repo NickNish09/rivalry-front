@@ -42,8 +42,8 @@ const NewRivalry = ({ history }) => {
     console.log(rivals);
 
     if (about !== "" && rivals !== [] && tags !== []) {
-      api.defaults.headers.Authorization =
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjY4NTczNDdjMDNlMjg3ODk2MDkyNCIsImlhdCI6MTU5MzM3MDI2OSwiZXhwIjoxNjc5NjgzODY5fQ.bRyUu-Ox5TGmNJlJ0nOKqEmpBJTdMEmNDoVZo5_2rKM";
+      // api.defaults.headers.Authorization =
+      //   "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZjY4NTczNDdjMDNlMjg3ODk2MDkyNCIsImlhdCI6MTU5MzM3MDI2OSwiZXhwIjoxNjc5NjgzODY5fQ.bRyUu-Ox5TGmNJlJ0nOKqEmpBJTdMEmNDoVZo5_2rKM";
       api
         .post("/rivalries", {
           about,

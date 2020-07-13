@@ -8,19 +8,22 @@ import Header from "../components/shared/Header";
 import RivalryPage from "../pages/Rivalry";
 import NewRivalry from "../pages/NewRivalry";
 import NewRivalryProvider from "../contexts/NewRivalryContext";
+import CurrentUserProvider from "../contexts/CurrentUserContext";
 
 const Routes = () => (
   <BrowserRouter>
     <div>
       <Header />
       <Switch>
-        <Route exact path={"/"} component={Home} />
-        <Route path={"/login"} component={Login} />
-        <Route path={"/rivalry/:rivalryId"} component={RivalryPage} />
-        <PrivateRoute path={"/app"} component={() => <h1>logado</h1>} />
-        <NewRivalryProvider>
-          <PrivateRoute path={"/create"} component={NewRivalry} />
-        </NewRivalryProvider>
+        <CurrentUserProvider>
+          <Route exact path={"/"} component={Home} />
+          <Route path={"/login"} component={Login} />
+          <Route path={"/rivalry/:rivalryId"} component={RivalryPage} />
+          <PrivateRoute path={"/app"} component={() => <h1>logado</h1>} />
+          <NewRivalryProvider>
+            <PrivateRoute path={"/create"} component={NewRivalry} />
+          </NewRivalryProvider>
+        </CurrentUserProvider>
       </Switch>
     </div>
   </BrowserRouter>

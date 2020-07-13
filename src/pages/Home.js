@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import RivalryCard from "../components/home/RivalryCard";
 import api from "../services/api";
 import RivalriesList from "../components/home/RivalriesList";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { TOKEN_KEY } from "../config/constants";
 
 const Home = () => {
   const [rivalries, setRivalries] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { user } = useCurrentUser();
 
   useEffect(() => {
+    console.log(user);
+    console.log(localStorage.getItem(TOKEN_KEY));
     api
       .get("rivalries")
       .then((response) => {
