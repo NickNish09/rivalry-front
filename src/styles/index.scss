@@ -2,6 +2,7 @@ $primary: #0b1622;
 $primary_light: #151f2e;
 $primary_lighter: #152232;
 $secondary: #4787cc;
+$white: #ededed;
 $light: #a0b1c5;
 $lighter: #8596a5;
 $light_dark: #505963;
@@ -19,6 +20,8 @@ $breakpoints: (phone_sm: 576px, //xs
 @import 'menu';
 @import 'rivalry';
 @import 'comments.scss';
+@import 'jodit.scss';
+@import 'create.scss';
 
 html, body {
   background-color: $primary;
@@ -42,6 +45,10 @@ html, body {
 
 .mb-5{
   margin-bottom: 5px;
+}
+
+.mr-5{
+  margin-right: 5px;
 }
 
 .mb-10{
@@ -112,4 +119,3 @@ html, body {
     margin: 0 205px;
   }
 }
-

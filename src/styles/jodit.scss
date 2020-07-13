@@ -1,0 +1,23 @@
+.jodit-container{
+  background-color: $light !important;
+  border: 1px solid $light !important;
+  * {
+    color: $light;
+  }
+}
+
+.jodit-container > .jodit-workplace >.jodit-wysiwyg{
+  background-color: $primary !important;
+}
+
+.jodit-container:not(.jodit_inline) .jodit-workplace{
+  border: 0 !important;
+}
+
+.jodit-toolbar__box{
+  background-color: $primary_light !important;
+}
+
+.jodit-status-bar{
+  background-color: $primary_light !important;
+}
