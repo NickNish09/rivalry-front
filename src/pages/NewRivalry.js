@@ -14,11 +14,12 @@ import NewTags from "../components/rivalry/NewTags";
 import { useNewRivalry } from "../contexts/NewRivalryContext";
 import api from "../services/api";
 import { openNotificationWithIcon } from "../helpers/notifications";
+import { withRouter } from "react-router-dom";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
 
-const NewRivalry = () => {
+const NewRivalry = ({ history }) => {
   const [loading, setLoading] = useState(false);
   const inputEl = useRef(null);
   const { tags, setTags, rivals, setRivals } = useNewRivalry();
@@ -51,6 +52,12 @@ const NewRivalry = () => {
         .then((response) => {
           console.log(response.data);
           resetState();
+          openNotificationWithIcon(
+            "success",
+            "Rivalry Created!",
+            "You can share you rivalry with the rivalry link!"
+          );
+          history.push(`/rivalry/${response.data.rivalry._id}`);
         })
         .catch((err) => {
           openNotificationWithIcon(
@@ -178,4 +185,4 @@ const NewRivalry = () => {
   );
 };
 
-export default NewRivalry;
+export default withRouter(NewRivalry);
