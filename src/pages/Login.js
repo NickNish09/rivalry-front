@@ -4,7 +4,6 @@ import { sendLoginRequest } from "../services/auth";
 import { openNotificationWithIcon } from "../helpers/notifications";
 import { TOKEN_KEY } from "../config/constants";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
-import api from "../services/api";
 
 const Login = ({ history }) => {
   const { setUser } = useCurrentUser();
@@ -14,8 +13,9 @@ const Login = ({ history }) => {
     sendLoginRequest(values)
       .then((response) => {
         let token = response.data.token;
+        let user = response.data.user;
         localStorage.setItem(TOKEN_KEY, token);
-        setUser(response.data.user);
+        setUser(user);
         history.push("/"); // go to home after login
         window.location.reload();
         console.log(response.data);

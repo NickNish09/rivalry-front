@@ -32,6 +32,7 @@ const Header = () => {
                 localStorage.removeItem(TOKEN_KEY);
                 window.location.reload();
               }}
+              type={"link"}
               className={"menu-login"}
             >
               Leave
