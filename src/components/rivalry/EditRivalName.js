@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input, AutoComplete, Avatar } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
+import { getRivalOptions } from "../../services/rival";
 
 const renderTitle = (title) => <span>{title}</span>;
 
@@ -24,38 +25,48 @@ const renderItem = (title, count, url) => ({
   ),
 });
 
-const options = [
-  {
-    label: renderTitle("Rival"),
-    options: [
-      renderItem(
-        "Cristiano Ronaldo",
-        10000,
-        "https://www.lance.com.br/files/article_main/uploads/2020/01/06/5e1354f9249d1.jpeg"
+const EditRivalName = ({ setAvatar, setRivalName }) => {
+  const [options, setOptions] = useState([]);
+  const formatedOptions = () => [
+    {
+      label: renderTitle("Rival"),
+      options: options.map((option) =>
+        renderItem(option.name, 0, option.imageUrl)
       ),
-      renderItem(
-        "Lionel Messi",
-        10600,
-        "https://images.daznservices.com/di/library/GOAL/e2/a2/lionel-messi-barcelona-2019-20_6v9f1g8ktz0516nmdti9iowmc.jpg?t=-1288858400&quality=100"
-      ),
-    ],
-  },
-];
+    },
+  ];
 
-const EditRivalName = ({ setAvatar, setRivalName }) => (
-  <AutoComplete
-    dropdownClassName="certain-category-search-dropdown"
-    dropdownMatchSelectWidth={500}
-    options={options}
-    className={"edit-rival-name-input"}
-    onChange={(e) => setRivalName(e)}
-    onSelect={(e) => {
-      setAvatar(e[1]);
-      setRivalName(e[0]);
-    }}
-  >
-    <Input size="middle" placeholder="Search for a rival or create new..." />
-  </AutoComplete>
-);
+  const updateOptionsRequest = (rivalName) => {
+    getRivalOptions(rivalName)
+      .then((response) => {
+        setOptions(response.data.rivals);
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err.response));
+  };
+
+  return (
+    <AutoComplete
+      dropdownClassName="certain-category-search-dropdown"
+      dropdownMatchSelectWidth={500}
+      options={formatedOptions()}
+      className={"edit-rival-name-input"}
+      onChange={(e) => {
+        setRivalName(e);
+        if (e.length > 2) {
+          updateOptionsRequest(e);
+        } else {
+          setOptions([]);
+        }
+      }}
+      onSelect={(e) => {
+        setAvatar(e[1]);
+        setRivalName(e[0]);
+      }}
+    >
+      <Input size="middle" placeholder="Search for a rival or create new..." />
+    </AutoComplete>
+  );
+};
 
 export default EditRivalName;
