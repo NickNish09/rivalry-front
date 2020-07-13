@@ -10,6 +10,7 @@ import {
   StarOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import Truncate from "react-truncate-html";
 
 const RivalryCard = ({
   rivals,
@@ -75,10 +76,14 @@ const RivalryCard = ({
                   <FacebookOutlined className={"rivalry-icon"} />
                 </div>
               </div>
-              <div
-                className={"rivalry-about-text"}
-                dangerouslySetInnerHTML={{ __html: about }}
-              ></div>
+              <div className={"rivalry-about-text"}>
+                <Truncate
+                  lines={3}
+                  dangerouslySetInnerHTML={{
+                    __html: about,
+                  }}
+                />
+              </div>
               {/*<p className={"rivalry-time"}>3 hours ago</p>*/}
               <div className={"rivalry-tags"}>
                 {tags.map((tag, index) => (
