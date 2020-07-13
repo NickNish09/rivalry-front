@@ -35,6 +35,8 @@
 }
 
 .rivalry-about-text{
+  max-height: 17em;
+  overflow-y: scroll;
   color: $light;
   @include media(">=tablet", "<desktop"){
     font-size: 13px;

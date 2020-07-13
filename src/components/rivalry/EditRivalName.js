@@ -40,7 +40,7 @@ const EditRivalName = ({ setAvatar, setRivalName }) => {
     getRivalOptions(rivalName)
       .then((response) => {
         setOptions(response.data.rivals);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((err) => console.log(err.response));
   };
