@@ -15,6 +15,7 @@ import { useNewRivalry } from "../contexts/NewRivalryContext";
 import api from "../services/api";
 import { openNotificationWithIcon } from "../helpers/notifications";
 import { withRouter } from "react-router-dom";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -23,6 +24,7 @@ const NewRivalry = ({ history }) => {
   const inputEl = useRef(null);
   const { tags, setTags, rivals, setRivals } = useNewRivalry();
   const [loading, setLoading] = useState(false);
+  const { user } = useCurrentUser();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -174,7 +176,7 @@ const NewRivalry = ({ history }) => {
                   avatar={
                     <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                   }
-                  title="NickNish"
+                  title={user.name}
                   description="author"
                 />
               </Card>
