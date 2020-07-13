@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Card, Col, Row, Tag, Tabs, Avatar, Button } from "antd";
+import { Card, Col, Row, Tag, Tabs, Avatar, Button, Spin } from "antd";
 import EditRivalCard from "../components/rivalry/EditRivalCard";
 import {
   CloseOutlined,
@@ -20,9 +20,9 @@ const { TabPane } = Tabs;
 const { Meta } = Card;
 
 const NewRivalry = ({ history }) => {
-  const [loading, setLoading] = useState(false);
   const inputEl = useRef(null);
   const { tags, setTags, rivals, setRivals } = useNewRivalry();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -35,6 +35,7 @@ const NewRivalry = ({ history }) => {
   };
 
   const sendCreateRivalryRequest = () => {
+    setLoading(true);
     let about = inputEl.current.value;
     console.log(about);
     console.log(tags);
@@ -52,6 +53,7 @@ const NewRivalry = ({ history }) => {
         .then((response) => {
           console.log(response.data);
           resetState();
+          setLoading(false);
           openNotificationWithIcon(
             "success",
             "Rivalry Created!",
@@ -60,6 +62,7 @@ const NewRivalry = ({ history }) => {
           history.push(`/rivalry/${response.data.rivalry._id}`);
         })
         .catch((err) => {
+          setLoading(false);
           openNotificationWithIcon(
             "error",
             "Error in creating rivalry",
@@ -68,6 +71,7 @@ const NewRivalry = ({ history }) => {
           console.log(err.response);
         });
     } else {
+      setLoading(false);
       openNotificationWithIcon(
         "error",
         "Fill all fields",
@@ -77,7 +81,7 @@ const NewRivalry = ({ history }) => {
   };
   return (
     <div className={"container"}>
-      <Card className={"rivalry-feed-card"} loading={loading}>
+      <Card className={"rivalry-feed-card"}>
         <Row>
           <Col md={19}>
             <Row>
@@ -174,9 +178,19 @@ const NewRivalry = ({ history }) => {
                   description="author"
                 />
               </Card>
-              <Button className={"btn-send"} onClick={sendCreateRivalryRequest}>
-                Create Rivalry!
-              </Button>
+              {!loading ? (
+                <Button
+                  className={"btn-send"}
+                  onClick={sendCreateRivalryRequest}
+                  disabled={loading}
+                >
+                  Create Rivalry!
+                </Button>
+              ) : (
+                <div className={"spin-container"}>
+                  <Spin size="large" />
+                </div>
+              )}
             </Row>
           </Col>
         </Row>

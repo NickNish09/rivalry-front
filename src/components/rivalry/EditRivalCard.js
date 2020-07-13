@@ -16,6 +16,7 @@ const EditRivalCard = ({ left }) => {
     return {
       name: rivalName,
       image_url: pictureUrl,
+      image_name: pictureName,
     };
   };
 

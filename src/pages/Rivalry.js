@@ -49,13 +49,11 @@ const RivalryPage = ({ match }) => {
                     <RivalCard
                       name={rivalry.rivals[0].name}
                       left
-                      url={
-                        "https://images.daznservices.com/di/library/GOAL/e2/a2/lionel-messi-barcelona-2019-20_6v9f1g8ktz0516nmdti9iowmc.jpg?t=-1288858400&quality=100"
-                      }
+                      url={rivalry.rivals[0].imageUrl}
                     />
                     <div>
                       <StarOutlined className={"rivalry-like"} />
-                      <span className={"rivalry-likes-count"}>134.4k</span>
+                      <span className={"rivalry-likes-count"}>0</span>
                     </div>
                   </div>
                 </Col>
@@ -68,13 +66,11 @@ const RivalryPage = ({ match }) => {
                   <div className={"rivalry-like-card"}>
                     <RivalCard
                       name={rivalry.rivals[1].name}
-                      url={
-                        "https://www.lance.com.br/files/article_main/uploads/2020/01/06/5e1354f9249d1.jpeg"
-                      }
+                      url={rivalry.rivals[1].imageUrl}
                     />
                     <div>
                       <StarOutlined className={"rivalry-like"} />
-                      <span className={"rivalry-likes-count"}>112.9k</span>
+                      <span className={"rivalry-likes-count"}>0</span>
                     </div>
                   </div>
                 </Col>
@@ -143,7 +139,9 @@ const RivalryPage = ({ match }) => {
                 <Col>
                   <div className={""}>
                     {rivalry.tags.map((tag) => (
-                      <Tag className={"rivalry-tag mb-5"}>{tag.name}</Tag>
+                      <Tag className={"rivalry-tag mb-5"} key={tag._id}>
+                        {tag.name}
+                      </Tag>
                     ))}
                   </div>
                 </Col>
