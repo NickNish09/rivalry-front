@@ -142,10 +142,9 @@ const RivalryPage = ({ match }) => {
               <Row>
                 <Col>
                   <div className={""}>
-                    <Tag className={"rivalry-tag mb-5"}>Sports</Tag>
-                    <Tag className={"rivalry-tag mb-5"}>Football</Tag>
-                    <Tag className={"rivalry-tag mb-5"}>Fifa</Tag>
-                    <Tag className={"rivalry-tag mb-5"}>Soccer</Tag>
+                    {rivalry.tags.map((tag) => (
+                      <Tag className={"rivalry-tag mb-5"}>{tag.name}</Tag>
+                    ))}
                   </div>
                 </Col>
               </Row>

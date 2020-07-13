@@ -83,7 +83,7 @@ const RivalryCard = ({
               <div className={"rivalry-tags"}>
                 {tags.map((tag, index) => (
                   <Tag key={index.toString()} className={"rivalry-tag"}>
-                    {tag}
+                    {tag.name}
                   </Tag>
                 ))}
               </div>

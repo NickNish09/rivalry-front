@@ -6,6 +6,7 @@ const RivalriesList = ({ rivalries, loading }) => {
     <div>
       {rivalries.map((rivalry) => (
         <RivalryCard
+          key={rivalry._id}
           loading={loading}
           rivals={[
             {
@@ -19,7 +20,7 @@ const RivalriesList = ({ rivalries, loading }) => {
                 "https://www.lance.com.br/files/article_main/uploads/2020/01/06/5e1354f9249d1.jpeg",
             },
           ]}
-          tags={["sports", "football", "fifa"]}
+          tags={rivalry.tags}
           about={rivalry.about}
           likes_count={`${rivalry.likes.length}`}
           rivalry_id={rivalry._id}
