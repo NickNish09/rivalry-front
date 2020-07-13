@@ -6,6 +6,8 @@ import { Button } from "antd";
 import { Link } from "react-router-dom";
 
 import { SearchOutlined } from "@ant-design/icons";
+import { isAuthenticated } from "../../services/auth";
+import { TOKEN_KEY } from "../../config/constants";
 
 const Header = () => {
   return (
@@ -24,9 +26,21 @@ const Header = () => {
           <Button type={"link"}>
             <SearchOutlined className={"menu-search-icon"} />
           </Button>
-          <Link to={"/login"} className={"menu-login"}>
-            Login
-          </Link>
+          {isAuthenticated() ? (
+            <Button
+              onClick={() => {
+                localStorage.removeItem(TOKEN_KEY);
+                window.location.reload();
+              }}
+              className={"menu-login"}
+            >
+              Leave
+            </Button>
+          ) : (
+            <Link to={"/login"} className={"menu-login"}>
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </Headroom>

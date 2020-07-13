@@ -16,8 +16,8 @@ const Login = ({ history }) => {
         let token = response.data.token;
         localStorage.setItem(TOKEN_KEY, token);
         setUser(response.data.user);
-        api.defaults.headers.Authorization = `Bearer ${token}`;
         history.push("/"); // go to home after login
+        window.location.reload();
         console.log(response.data);
       })
       .catch((err) => {
