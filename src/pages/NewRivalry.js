@@ -13,6 +13,7 @@ import JoditEditor from "jodit-react";
 import NewTags from "../components/rivalry/NewTags";
 import { useNewRivalry } from "../contexts/NewRivalryContext";
 import api from "../services/api";
+import { openNotificationWithIcon } from "../helpers/notifications";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -52,10 +53,19 @@ const NewRivalry = () => {
           resetState();
         })
         .catch((err) => {
+          openNotificationWithIcon(
+            "error",
+            "Error in creating rivalry",
+            "Try again."
+          );
           console.log(err.response);
         });
     } else {
-      console.log("preencha tudo");
+      openNotificationWithIcon(
+        "error",
+        "Fill all fields",
+        "Fill all fields before to create the rivalry."
+      );
     }
   };
   return (
