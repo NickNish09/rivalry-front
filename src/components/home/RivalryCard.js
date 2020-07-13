@@ -11,8 +11,14 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const RivalryCard = ({ rivals, tags, about, likes_count, rivalry_id }) => {
-  const [loading, setLoading] = useState(false);
+const RivalryCard = ({
+  rivals,
+  tags,
+  about,
+  likes_count,
+  rivalry_id,
+  loading,
+}) => {
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   return (
     <Card className={"rivalry-feed-card"} loading={loading}>

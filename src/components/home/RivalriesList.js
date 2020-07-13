@@ -1,11 +1,12 @@
 import React from "react";
 import RivalryCard from "./RivalryCard";
 
-const RivalriesList = ({ rivalries }) => {
+const RivalriesList = ({ rivalries, loading }) => {
   return (
     <div>
       {rivalries.map((rivalry) => (
         <RivalryCard
+          loading={loading}
           rivals={[
             {
               name: rivalry.rivals[0].name,

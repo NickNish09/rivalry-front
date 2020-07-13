@@ -5,22 +5,25 @@ import RivalriesList from "../components/home/RivalriesList";
 
 const Home = () => {
   const [rivalries, setRivalries] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     api
       .get("rivalries")
       .then((response) => {
         setRivalries(response.data.rivalries);
+        setLoading(false);
         console.log(response.data);
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err.response);
       });
   }, []);
 
   return (
     <div className={"container"}>
-      <RivalriesList rivalries={rivalries} />
+      <RivalriesList rivalries={rivalries} loading={loading} />
       {/*<RivalryCard*/}
       {/*  rivals={[*/}
       {/*    {*/}
