@@ -11,7 +11,7 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const RivalryCard = ({ rivals, tags }) => {
+const RivalryCard = ({ rivals, tags, about, likes_count, rivalry_id }) => {
   const [loading, setLoading] = useState(false);
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   return (
@@ -25,7 +25,7 @@ const RivalryCard = ({ rivals, tags }) => {
                   <RivalCard left url={rivals[0].url} name={rivals[0].name} />
                   <div className={"rivalry-like-row"}>
                     <StarOutlined className={"rivalry-like"} />
-                    <span className={"rivalry-likes-count"}>134.3k</span>
+                    <span className={"rivalry-likes-count"}>143.3K</span>
                   </div>
                 </div>
               </Col>
@@ -62,22 +62,17 @@ const RivalryCard = ({ rivals, tags }) => {
                       onClick={() => setHasLikedRivlary(true)}
                     />
                   )}
-                  <span className={"rivalry-heart-count"}>295.5k</span>
+                  <span className={"rivalry-heart-count"}>{likes_count}</span>
                 </div>
                 <div>
                   <TwitterOutlined className={"rivalry-icon"} />
                   <FacebookOutlined className={"rivalry-icon"} />
                 </div>
               </div>
-              <p className={"rivalry-about-text"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi
-                ligula erat, aliquet ac lectus eu, ultrices viverra ex. Maecenas
-                erat metus, auctor vitae vestibulum eu, auctor et nunc. Quisque
-                auctor auctor purus. Duis aliquet mi ut auctor sollicitudin.
-                Maecenas nec tortor a ipsum hendrerit pharetra. Nulla cursus
-                nulla et efficitur blandit. Nunc aliquam justo facilisis, auctor
-                libero non, convallis turpis...
-              </p>
+              <div
+                className={"rivalry-about-text"}
+                dangerouslySetInnerHTML={{ __html: about }}
+              ></div>
               {/*<p className={"rivalry-time"}>3 hours ago</p>*/}
               <div className={"rivalry-tags"}>
                 {tags.map((tag, index) => (
@@ -87,7 +82,7 @@ const RivalryCard = ({ rivals, tags }) => {
                 ))}
               </div>
               <Button className={"rivalry-keep-reading-btn"}>
-                <Link to={`/rivalry/oe21l9eka9s`}>Keep Reading</Link>
+                <Link to={`/rivalry/${rivalry_id}`}>Keep Reading</Link>
               </Button>
             </div>
           </Col>

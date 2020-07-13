@@ -16,7 +16,7 @@ const Routes = () => (
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path={"/login"} component={Login} />
-        <Route path={"/rivalry"} component={RivalryPage} />
+        <Route path={"/rivalry/:rivalryId"} component={RivalryPage} />
         <PrivateRoute path={"/app"} component={() => <h1>logado</h1>} />
         <NewRivalryProvider>
           <PrivateRoute path={"/create"} component={NewRivalry} />
