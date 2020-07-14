@@ -69,7 +69,7 @@ const Header = () => {
                 Leave
               </Button>
             ) : (
-              <Link to={"/login"} className={"menu-login"}>
+              <Link to={"/login"} className={"menu-login-responsive"}>
                 Login
               </Link>
             )}

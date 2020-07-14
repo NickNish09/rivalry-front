@@ -7,8 +7,27 @@
 }
 
 .auth-card{
-  width: 33%;
   background-color: $primary_lighter;
+
+  @include media("<phone") {
+    width: 90%;
+  }
+
+  @include media(">=phone", "<tablet") {
+    width: 85%;
+  }
+
+  @include media(">=tablet", "<desktop") {
+    width: 55%;
+  }
+
+  @include media(">=desktop", "<desktop_large") {
+    width: 45%;
+  }
+
+  @include media(">=desktop_large") {
+    width: 33%;
+  }
 }
 
 .auth-title{
