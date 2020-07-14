@@ -8,6 +8,7 @@ import {
   FacebookOutlined,
   HeartFilled,
   StarOutlined,
+  LinkOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import Truncate from "react-truncate-html";
@@ -15,6 +16,7 @@ import { isAuthenticated } from "../../services/auth";
 import { checkIfLiked, likeRivalry } from "../../services/rivalries";
 import { openNotificationWithIcon } from "../../helpers/notifications";
 import { DEFAULT_PRODUCTION_URL } from "../../config/constants";
+import { copyToClipboard } from "../../helpers/copyToClipboard";
 
 const RivalryCard = ({
   rivals,
@@ -131,6 +133,14 @@ const RivalryCard = ({
                       window.open(
                         `https://www.facebook.com/sharer/sharer.php?u=${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry_id}`,
                         "_blank"
+                      )
+                    }
+                  />
+                  <LinkOutlined
+                    className={"rivalry-icon mb-10"}
+                    onClick={() =>
+                      copyToClipboard(
+                        `${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry_id}`
                       )
                     }
                   />

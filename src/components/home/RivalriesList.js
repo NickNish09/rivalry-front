@@ -10,12 +10,12 @@ const RivalriesList = ({ rivalries, loading }) => {
           loading={loading}
           rivals={[
             {
-              name: rivalry.rivals[0].name,
-              url: rivalry.rivals[0].imageUrl,
+              name: rivalry.rivals[0].rival.name,
+              url: rivalry.rivals[0].rival.imageUrl,
             },
             {
-              name: rivalry.rivals[1].name,
-              url: rivalry.rivals[1].imageUrl,
+              name: rivalry.rivals[1].rival.name,
+              url: rivalry.rivals[1].rival.imageUrl,
             },
           ]}
           tags={rivalry.tags}
