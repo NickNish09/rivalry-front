@@ -131,24 +131,19 @@ const RivalryPage = ({ match }) => {
                       </TabPane>
                       <TabPane tab="Comments" key="2">
                         <MakeComment />
-                        <CommentCard
-                          comment={"LIONEL >>> CR7 (5 bolas de ouro)"}
-                          replies={[
-                            {
-                              comment: "Ta na disney",
-                              replies: [
-                                { comment: "Ta na eurodisney", replies: [] },
-                              ],
-                            },
-                            { comment: "Ta na disney", replies: [] },
-                          ]}
-                          likes={"1.4k"}
-                        />
-                        <CommentCard
-                          comment={"Nem"}
-                          replies={[]}
-                          likes={"139"}
-                        />
+                        {/*<CommentCard*/}
+                        {/*  comment={"LIONEL >>> CR7 (5 bolas de ouro)"}*/}
+                        {/*  replies={[*/}
+                        {/*    {*/}
+                        {/*      comment: "Ta na disney",*/}
+                        {/*      replies: [*/}
+                        {/*        { comment: "Ta na eurodisney", replies: [] },*/}
+                        {/*      ],*/}
+                        {/*    },*/}
+                        {/*    { comment: "Ta na disney", replies: [] },*/}
+                        {/*  ]}*/}
+                        {/*  likes={"1.4k"}*/}
+                        {/*/>*/}
                       </TabPane>
                     </Tabs>
                   </div>
