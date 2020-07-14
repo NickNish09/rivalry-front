@@ -11,6 +11,10 @@ import { TOKEN_KEY } from "../../config/constants";
 
 const Header = () => {
   const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
+
+  const dismissDrawer = () => {
+    setOpenResponsiveMenu(false);
+  };
   return (
     <Headroom>
       <div className={"menu-navbar"}>
@@ -60,10 +64,18 @@ const Header = () => {
       >
         <div className={"menu-responsive"}>
           <div className={"menu-links-responsive"}>
-            <Link to="/">Home</Link>
-            <Link to="/trending">Trending</Link>
-            <Link to="/top">Top Rivalries</Link>
-            <Link to="/create">Create</Link>
+            <Link to="/" onClick={dismissDrawer}>
+              Home
+            </Link>
+            <Link to="/trending" onClick={dismissDrawer}>
+              Trending
+            </Link>
+            <Link to="/top" onClick={dismissDrawer}>
+              Top Rivalries
+            </Link>
+            <Link to="/create" onClick={dismissDrawer}>
+              Create
+            </Link>
             <Divider className={"divider-responsive"} />
             {isAuthenticated() ? (
               <Button
@@ -77,7 +89,11 @@ const Header = () => {
                 Leave
               </Button>
             ) : (
-              <Link to={"/login"} className={"menu-login-responsive"}>
+              <Link
+                to={"/login"}
+                className={"menu-login-responsive"}
+                onClick={dismissDrawer}
+              >
                 Login
               </Link>
             )}
