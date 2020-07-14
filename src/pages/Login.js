@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Input, Button, Checkbox, Card } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, Checkbox, Card, Spin } from "antd";
 import { sendLoginRequest } from "../services/auth";
 import { openNotificationWithIcon } from "../helpers/notifications";
 import { TOKEN_KEY } from "../config/constants";
@@ -7,9 +7,11 @@ import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 const Login = ({ history }) => {
   const { setUser } = useCurrentUser();
+  const [loading, setLoading] = useState(false);
 
   const onFinish = (values) => {
     console.log("Success:", values);
+    setLoading(true);
     sendLoginRequest(values)
       .then((response) => {
         let token = response.data.token;
@@ -19,9 +21,11 @@ const Login = ({ history }) => {
         history.push("/"); // go to home after login
         window.location.reload();
         console.log(response.data);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err.response);
+        setLoading(false);
         openNotificationWithIcon(
           "error",
           "Error at login",
@@ -81,9 +85,15 @@ const Login = ({ history }) => {
           </Form.Item>
 
           <Form.Item>
-            <Button htmlType="submit" className={"auth-submit"}>
-              Submit
-            </Button>
+            {loading ? (
+              <div className={"spin-container"}>
+                <Spin size={"large"} />
+              </div>
+            ) : (
+              <Button htmlType="submit" className={"auth-submit"}>
+                Submit
+              </Button>
+            )}
           </Form.Item>
         </Form>
       </Card>

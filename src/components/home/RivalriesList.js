@@ -8,20 +8,12 @@ const RivalriesList = ({ rivalries, loading }) => {
         <RivalryCard
           key={rivalry._id}
           loading={loading}
-          rivals={[
-            {
-              name: rivalry.rivals[0].name,
-              url: rivalry.rivals[0].imageUrl,
-            },
-            {
-              name: rivalry.rivals[1].name,
-              url: rivalry.rivals[1].imageUrl,
-            },
-          ]}
+          rivals={rivalry.rivals}
           tags={rivalry.tags}
           about={rivalry.about}
           likes_count={`${rivalry.likes.length}`}
           rivalry_id={rivalry._id}
+          title={rivalry.title}
         />
       ))}
     </div>

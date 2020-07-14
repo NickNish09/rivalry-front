@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../services/api";
 import RivalriesList from "../components/home/RivalriesList";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { Card } from "antd";
 
 const Home = () => {
   const [rivalries, setRivalries] = useState([]);
@@ -26,21 +27,8 @@ const Home = () => {
   return (
     <div className={"container"}>
       <RivalriesList rivalries={rivalries} loading={loading} />
-      {/*<RivalryCard*/}
-      {/*  rivals={[*/}
-      {/*    {*/}
-      {/*      name: "Lionel Messi",*/}
-      {/*      url:*/}
-      {/*        "https://images.daznservices.com/di/library/GOAL/e2/a2/lionel-messi-barcelona-2019-20_6v9f1g8ktz0516nmdti9iowmc.jpg?t=-1288858400&quality=100",*/}
-      {/*    },*/}
-      {/*    {*/}
-      {/*      name: "Cristiano Ronaldo",*/}
-      {/*      url:*/}
-      {/*        "https://www.lance.com.br/files/article_main/uploads/2020/01/06/5e1354f9249d1.jpeg",*/}
-      {/*    },*/}
-      {/*  ]}*/}
-      {/*  tags={["sports", "football", "fifa"]}*/}
-      {/*/>*/}
+      {/*<Card loading={true} className={"rivalry-card-placeholder"} />*/}
+
       {/*<RivalryCard*/}
       {/*  rivals={[*/}
       {/*    {*/}

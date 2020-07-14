@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "antd";
 import EditRivalName from "./EditRivalName";
 import { useNewRivalry } from "../../contexts/NewRivalryContext";
+import Cropper from "react-easy-crop";
 
 const EditRivalCard = ({ left }) => {
   const [avatar, setAvatar] = useState(
@@ -11,6 +12,21 @@ const EditRivalCard = ({ left }) => {
   const [pictureName, setPictureName] = useState("");
   const [rivalName, setRivalName] = useState("");
   const { setRivals } = useNewRivalry();
+  // const [crop, setCrop] = useState({ x: 0, y: 0 });
+  // const [zoom, setZoom] = useState(1);
+  // const [aspect, setAspect] = useState(4 / 3);
+  //
+  // const onCropChange = (crop) => {
+  //   setCrop(crop);
+  // };
+  //
+  // const onCropComplete = (croppedArea, croppedAreaPixels) => {
+  //   console.log(croppedArea, croppedAreaPixels);
+  // };
+  //
+  // const onZoomChange = (zoom) => {
+  //   setZoom(zoom);
+  // };
 
   const rival = () => {
     return {
@@ -42,6 +58,20 @@ const EditRivalCard = ({ left }) => {
   return (
     <div className={"rival-card"}>
       <div className={"edit-image-container"}>
+        {/*<Cropper*/}
+        {/*  image={avatar}*/}
+        {/*  crop={crop}*/}
+        {/*  zoom={zoom}*/}
+        {/*  aspect={aspect}*/}
+        {/*  onCropChange={onCropChange}*/}
+        {/*  onCropComplete={onCropComplete}*/}
+        {/*  onZoomChange={onZoomChange}*/}
+        {/*  classes={*/}
+        {/*    left*/}
+        {/*      ? "rival-left rival-edit-image"*/}
+        {/*      : "rival-right rival-edit-image"*/}
+        {/*  }*/}
+        {/*/>*/}
         <img
           src={avatar}
           alt={pictureName}
