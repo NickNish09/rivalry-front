@@ -22,6 +22,7 @@ const RivalriesList = ({ rivalries, loading }) => {
           about={rivalry.about}
           likes_count={`${rivalry.likes.length}`}
           rivalry_id={rivalry._id}
+          title={rivalry.title}
         />
       ))}
     </div>

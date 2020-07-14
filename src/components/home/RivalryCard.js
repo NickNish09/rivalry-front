@@ -22,6 +22,7 @@ const RivalryCard = ({
   likes_count,
   rivalry_id,
   loading,
+  title,
 }) => {
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   const [likeCount, setLikeCount] = useState(likes_count);
@@ -114,7 +115,15 @@ const RivalryCard = ({
                   <span className={"rivalry-heart-count"}>{likeCount}</span>
                 </div>
                 <div>
-                  <TwitterOutlined className={"rivalry-icon"} />
+                  <TwitterOutlined
+                    className={"rivalry-icon"}
+                    onClick={() =>
+                      window.open(
+                        `https://twitter.com/intent/tweet?text=${title} which one is better? Vote in https://rivalry.tk/rivalry/${rivalry_id}`,
+                        "_blank"
+                      )
+                    }
+                  />
                   <FacebookOutlined className={"rivalry-icon"} />
                 </div>
               </div>
