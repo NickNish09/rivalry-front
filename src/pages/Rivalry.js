@@ -8,6 +8,7 @@ import {
   HeartOutlined,
   TwitterOutlined,
   StarOutlined,
+  LinkOutlined,
 } from "@ant-design/icons";
 import CommentCard from "../components/rivalry/CommentCard";
 import MakeComment from "../components/rivalry/MakeComment";
@@ -16,6 +17,7 @@ import { checkIfLiked, likeRivalry } from "../services/rivalries";
 import { isAuthenticated } from "../services/auth";
 import { openNotificationWithIcon } from "../helpers/notifications";
 import { DEFAULT_PRODUCTION_URL } from "../config/constants";
+import { copyToClipboard } from "../helpers/copyToClipboard";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -180,11 +182,19 @@ const RivalryPage = ({ match }) => {
                   }
                 />
                 <FacebookOutlined
-                  className={"rivalry-icon"}
+                  className={"rivalry-icon mb-10"}
                   onClick={() =>
                     window.open(
                       `https://www.facebook.com/sharer/sharer.php?u=${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry._id}`,
                       "_blank"
+                    )
+                  }
+                />
+                <LinkOutlined
+                  className={"rivalry-icon mb-10"}
+                  onClick={() =>
+                    copyToClipboard(
+                      `${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry._id}`
                     )
                   }
                 />
