@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Button, Row, Col, Tag } from "antd";
 import RivalCard from "./RivalCard";
 import {
@@ -11,6 +11,9 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import Truncate from "react-truncate-html";
+import { isAuthenticated } from "../../services/auth";
+import { checkIfLiked, likeRivalry } from "../../services/rivalries";
+import { openNotificationWithIcon } from "../../helpers/notifications";
 
 const RivalryCard = ({
   rivals,
@@ -21,6 +24,45 @@ const RivalryCard = ({
   loading,
 }) => {
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
+  const [likeCount, setLikeCount] = useState(likes_count);
+
+  useEffect(() => {
+    checkIfLiked(rivalry_id).then((response) => {
+      console.log(response.data.hasLiked);
+      setHasLikedRivlary(response.data.hasLiked);
+    });
+  }, []);
+
+  const likeCard = (isLiking) => {
+    // check if is liking or desliking, false to deslike
+    if (isAuthenticated()) {
+      // if the user is authenticated send like request
+      likeRivalry(rivalry_id)
+        .then((response) => {
+          if (isLiking) {
+            setLikeCount((prevLikeCount) => parseInt(prevLikeCount) + 1);
+          } else {
+            setLikeCount((prevLikeCount) => parseInt(prevLikeCount) - 1);
+          }
+          setHasLikedRivlary(isLiking);
+        })
+        .catch((err) => {
+          openNotificationWithIcon(
+            "error",
+            "Error liking rivalry",
+            err.response.data.error
+          );
+          console.log(err.response);
+        });
+    } else {
+      openNotificationWithIcon(
+        "error",
+        "Error liking rivalry",
+        "You must be logged in to like a rivalry"
+      );
+    }
+  };
+
   return (
     <Card className={"rivalry-feed-card"} loading={loading}>
       <div className={"rivalry-card"}>
@@ -32,7 +74,7 @@ const RivalryCard = ({
                   <RivalCard left url={rivals[0].url} name={rivals[0].name} />
                   <div className={"rivalry-like-row"}>
                     <StarOutlined className={"rivalry-like"} />
-                    <span className={"rivalry-likes-count"}>143.3K</span>
+                    <span className={"rivalry-likes-count"}>0</span>
                   </div>
                 </div>
               </Col>
@@ -46,7 +88,7 @@ const RivalryCard = ({
                   <RivalCard url={rivals[1].url} name={rivals[1].name} />
                   <div>
                     <StarOutlined className={"rivalry-like"} />
-                    <span className={"rivalry-likes-count"}>112.9k</span>
+                    <span className={"rivalry-likes-count"}>0</span>
                   </div>
                 </div>
               </Col>
@@ -61,15 +103,15 @@ const RivalryCard = ({
                   {hasLikedRivalry ? (
                     <HeartFilled
                       className={"rivalry-icon"}
-                      onClick={() => setHasLikedRivlary(false)}
+                      onClick={() => likeCard(false)}
                     />
                   ) : (
                     <HeartOutlined
                       className={"rivalry-icon"}
-                      onClick={() => setHasLikedRivlary(true)}
+                      onClick={() => likeCard(true)}
                     />
                   )}
-                  <span className={"rivalry-heart-count"}>{likes_count}</span>
+                  <span className={"rivalry-heart-count"}>{likeCount}</span>
                 </div>
                 <div>
                   <TwitterOutlined className={"rivalry-icon"} />
