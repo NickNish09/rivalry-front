@@ -1,9 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { Col, Row } from "antd";
 import RivalCard from "./RivalCard";
-import { CloseOutlined, StarFilled, StarOutlined } from "@ant-design/icons";
+import { CloseOutlined } from "@ant-design/icons";
 import { postStarRival } from "../../services/rival";
 import { getRivalStared } from "../../services/rivalries";
+import RivalryStarRow from "./RivalryStarRow";
 
 export const RivalsRow = ({ rivals, rivalry_id }) => {
   const [rivalStarIndex, setRivalStarIndex] = useState(null);
@@ -20,9 +21,9 @@ export const RivalsRow = ({ rivals, rivalry_id }) => {
       });
   }, []);
 
-  const starRival = (rivalId, rivalryId, isStaring) => {
-    console.log(rivalId, rivalryId);
-    postStarRival(rivalId, rivalryId)
+  const starRival = (rivalId, isStaring) => {
+    console.log(rivalId, rivalry_id);
+    postStarRival(rivalId, rivalry_id)
       .then((response) => {
         console.log(response.data);
       })
@@ -46,22 +47,11 @@ export const RivalsRow = ({ rivals, rivalry_id }) => {
                 url={rival.rival.imageUrl}
                 name={rival.rival.name}
               />
-              <div className={"rivalry-like-row"}>
-                {rivalStarIndex === rival.rival._id ? (
-                  <StarFilled
-                    className={"rivalry-like"}
-                    onClick={() =>
-                      starRival(rival.rival._id, rivalry_id, false)
-                    }
-                  />
-                ) : (
-                  <StarOutlined
-                    className={"rivalry-like"}
-                    onClick={() => starRival(rival.rival._id, rivalry_id, true)}
-                  />
-                )}
-                <span className={"rivalry-likes-count"}>{rival.stars}</span>
-              </div>
+              <RivalryStarRow
+                rival={rival}
+                rivalStarIndex={rivalStarIndex}
+                starRival={starRival}
+              />
             </div>
           </Col>
           {index % 2 === 0 ? (
