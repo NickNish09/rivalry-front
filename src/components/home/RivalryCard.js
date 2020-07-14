@@ -14,6 +14,7 @@ import Truncate from "react-truncate-html";
 import { isAuthenticated } from "../../services/auth";
 import { checkIfLiked, likeRivalry } from "../../services/rivalries";
 import { openNotificationWithIcon } from "../../helpers/notifications";
+import { DEFAULT_PRODUCTION_URL } from "../../config/constants";
 
 const RivalryCard = ({
   rivals,
@@ -119,12 +120,20 @@ const RivalryCard = ({
                     className={"rivalry-icon"}
                     onClick={() =>
                       window.open(
-                        `https://twitter.com/intent/tweet?text=${title} which one is better? Vote in https://rivalry.tk/rivalry/${rivalry_id}`,
+                        `https://twitter.com/intent/tweet?text=${title} which one is better? Vote in ${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry_id}`,
                         "_blank"
                       )
                     }
                   />
-                  <FacebookOutlined className={"rivalry-icon"} />
+                  <FacebookOutlined
+                    className={"rivalry-icon"}
+                    onClick={() =>
+                      window.open(
+                        `https://www.facebook.com/sharer/sharer.php?u=${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry_id}`,
+                        "_blank"
+                      )
+                    }
+                  />
                 </div>
               </div>
               <div className={"rivalry-about-text"}>
