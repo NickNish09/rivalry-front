@@ -15,3 +15,7 @@ export const likeRivalry = (rivalryId) => {
 export const checkIfLiked = (rivalryId) => {
   return api.get(`/likes/hasLikedRivalry/${rivalryId}`);
 };
+
+export const getRivalStared = (rivalryId) => {
+  return api.get(`/likes/rivalStared/${rivalryId}`);
+};

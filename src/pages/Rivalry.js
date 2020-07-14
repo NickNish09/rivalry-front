@@ -29,7 +29,6 @@ const RivalryPage = ({ match }) => {
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   const [rivalry, setRivalry] = useState(null);
   const [likeCount, setLikeCount] = useState(0);
-  const [rivalStarIndex, setRivalStarIndex] = useState(null); // index of wich rival the person stared
 
   const likeCard = (isLiking) => {
     // check if is liking or desliking, false to deslike
@@ -88,20 +87,13 @@ const RivalryPage = ({ match }) => {
     console.log(rivalry);
   }, [rivalry]);
 
-  const starRival = (rivalIndex, rivalId, rivalryId, isStaring) => {
-    if (isStaring)
-      // is staring, not destaring
-      setRivalStarIndex(rivalIndex);
-    else setRivalStarIndex(null);
-  };
-
   return (
     <div className={"container"}>
       <Card className={"rivalry-feed-card"} loading={loading}>
         {rivalry !== null ? (
           <Row>
             <Col md={19}>
-              <RivalsRow rivalry_id={rivalry.id} rivals={rivalry.rivals} />
+              <RivalsRow rivalry_id={rivalry._id} rivals={rivalry.rivals} />
               <Row>
                 <div className={"tabs-container"}>
                   <div className="card-container">

@@ -1,23 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { Col, Row } from "antd";
 import RivalCard from "./RivalCard";
 import { CloseOutlined, StarFilled, StarOutlined } from "@ant-design/icons";
+import { postStarRival } from "../../services/rival";
+import { getRivalStared } from "../../services/rivalries";
 
 export const RivalsRow = ({ rivals, rivalry_id }) => {
   const [rivalStarIndex, setRivalStarIndex] = useState(null);
 
-  const starRival = (rivalIndex, rivalId, rivalryId, isStaring) => {
+  useEffect(() => {
+    // get the id of rival stared from api
+    getRivalStared(rivalry_id)
+      .then((response) => {
+        console.log(response.data);
+        setRivalStarIndex(response.data.rival);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  }, []);
+
+  const starRival = (rivalId, rivalryId, isStaring) => {
     console.log(rivalId, rivalryId);
+    postStarRival(rivalId, rivalryId)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
     if (isStaring)
       // is staring, not destaring
-      setRivalStarIndex(rivalIndex);
+      setRivalStarIndex(rivalId);
     else setRivalStarIndex(null);
   };
 
   return (
     <Row>
       {rivals.map((rival, index) => (
-        <>
+        <Fragment key={rival.rival._id}>
           <Col lg={11} md={11} sm={11} xs={24}>
             <div className={"rivalry-like-card"}>
               <RivalCard
@@ -26,19 +47,17 @@ export const RivalsRow = ({ rivals, rivalry_id }) => {
                 name={rival.rival.name}
               />
               <div className={"rivalry-like-row"}>
-                {rivalStarIndex === index ? (
+                {rivalStarIndex === rival.rival._id ? (
                   <StarFilled
                     className={"rivalry-like"}
                     onClick={() =>
-                      starRival(index, rival.rival._id, rivalry_id, false)
+                      starRival(rival.rival._id, rivalry_id, false)
                     }
                   />
                 ) : (
                   <StarOutlined
                     className={"rivalry-like"}
-                    onClick={() =>
-                      starRival(index, rival.rival._id, rivalry_id, true)
-                    }
+                    onClick={() => starRival(rival.rival._id, rivalry_id, true)}
                   />
                 )}
                 <span className={"rivalry-likes-count"}>{rival.stars}</span>
@@ -54,7 +73,7 @@ export const RivalsRow = ({ rivals, rivalry_id }) => {
           ) : (
             <div />
           )}
-        </>
+        </Fragment>
       ))}
     </Row>
   );
