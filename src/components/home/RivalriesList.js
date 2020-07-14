@@ -12,10 +12,14 @@ const RivalriesList = ({ rivalries, loading }) => {
             {
               name: rivalry.rivals[0].rival.name,
               url: rivalry.rivals[0].rival.imageUrl,
+              _id: rivalry.rivals[0].rival._id,
+              stars: rivalry.rivals[0].stars,
             },
             {
               name: rivalry.rivals[1].rival.name,
               url: rivalry.rivals[1].rival.imageUrl,
+              _id: rivalry.rivals[1].rival._id,
+              stars: rivalry.rivals[1].stars,
             },
           ]}
           tags={rivalry.tags}
