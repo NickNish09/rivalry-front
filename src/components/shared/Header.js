@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Headroom from "react-headroom";
 import logo from "../../assets/rivalry-logo.svg";
 
-import { Button, Divider } from "antd";
+import { Button, Divider, Drawer } from "antd";
 import { Link } from "react-router-dom";
 
 import { SearchOutlined, MenuOutlined } from "@ant-design/icons";
@@ -49,7 +49,15 @@ const Header = () => {
           />
         </div>
       </div>
-      {openResponsiveMenu ? (
+
+      <Drawer
+        placement={"top"}
+        closable={true}
+        onClose={() => setOpenResponsiveMenu(false)}
+        visible={openResponsiveMenu}
+        key={"top"}
+        className={"responsive-drawer"}
+      >
         <div className={"menu-responsive"}>
           <div className={"menu-links-responsive"}>
             <Link to="/">Home</Link>
@@ -75,9 +83,7 @@ const Header = () => {
             )}
           </div>
         </div>
-      ) : (
-        <div />
-      )}
+      </Drawer>
     </Headroom>
   );
 };

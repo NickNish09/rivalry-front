@@ -20,6 +20,20 @@
   color: $light;
 }
 
+.responsive-drawer {
+  .ant-drawer-body{
+    padding: 0 !important;
+    background-color: $primary_light;
+  }
+  .ant-drawer-content-wrapper {
+    height: auto !important;
+  }
+
+  .ant-drawer-close{
+    color: $light;
+  }
+}
+
 .menu-responsive{
   display: none;
   background-color: $primary_light;
