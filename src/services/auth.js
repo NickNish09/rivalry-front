@@ -15,3 +15,12 @@ export const sendLoginRequest = (values) => {
     password,
   });
 };
+
+export const sendRegisterRequest = (values) => {
+  const { email, password, name } = values;
+  return api.post("auth/register", {
+    email,
+    password,
+    name,
+  });
+};

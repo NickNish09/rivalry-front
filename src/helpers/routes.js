@@ -11,6 +11,7 @@ import NewRivalryProvider from "../contexts/NewRivalryContext";
 import CurrentUserProvider from "../contexts/CurrentUserContext";
 import Trending from "../pages/Trending";
 import TopRivalries from "../pages/TopRivalries";
+import Register from "../pages/Register";
 
 const Routes = () => (
   <BrowserRouter>
@@ -20,6 +21,7 @@ const Routes = () => (
         <CurrentUserProvider>
           <Route exact path={"/"} component={Home} />
           <Route path={"/login"} component={Login} />
+          <Route path={"/register"} component={Register} />
           <Route path={"/rivalry/:rivalryId"} component={RivalryPage} />
           <Route path={"/trending"} component={Trending} />
           <Route path={"/top"} component={TopRivalries} />
