@@ -18,6 +18,7 @@ import { checkIfLiked, likeRivalry } from "../../services/rivalries";
 import { openNotificationWithIcon } from "../../helpers/notifications";
 import { DEFAULT_PRODUCTION_URL } from "../../config/constants";
 import { copyToClipboard } from "../../helpers/copyToClipboard";
+import RivalsRow from "./RivalsRow";
 
 const RivalryCard = ({
   rivals,
@@ -30,7 +31,6 @@ const RivalryCard = ({
 }) => {
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   const [likeCount, setLikeCount] = useState(likes_count);
-  const [rivalStarIndex, setRivalStarIndex] = useState(null);
 
   useEffect(() => {
     checkIfLiked(rivalry_id).then((response) => {
@@ -38,14 +38,6 @@ const RivalryCard = ({
       setHasLikedRivlary(response.data.hasLiked);
     });
   }, []);
-
-  const starRival = (rivalIndex, rivalId, rivalryId, isStaring) => {
-    console.log(rivalId, rivalryId);
-    if (isStaring)
-      // is staring, not destaring
-      setRivalStarIndex(rivalIndex);
-    else setRivalStarIndex(null);
-  };
 
   const likeCard = (isLiking) => {
     // check if is liking or desliking, false to deslike
@@ -82,46 +74,7 @@ const RivalryCard = ({
       <div className={"rivalry-card"}>
         <Row>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
-            <Row>
-              {rivals.map((rival, index) => (
-                <>
-                  <Col lg={11} md={11} sm={11} xs={24}>
-                    <div className={"rivalry-like-card"}>
-                      <RivalCard left url={rival.url} name={rival.name} />
-                      <div className={"rivalry-like-row"}>
-                        {rivalStarIndex === index ? (
-                          <StarFilled
-                            className={"rivalry-like"}
-                            onClick={() =>
-                              starRival(index, rival._id, rivalry_id, false)
-                            }
-                          />
-                        ) : (
-                          <StarOutlined
-                            className={"rivalry-like"}
-                            onClick={() =>
-                              starRival(index, rival._id, rivalry_id, true)
-                            }
-                          />
-                        )}
-                        <span className={"rivalry-likes-count"}>
-                          {rival.stars}
-                        </span>
-                      </div>
-                    </div>
-                  </Col>
-                  {index % 2 === 0 ? (
-                    <Col lg={2} md={2} sm={2} xs={24}>
-                      <div className={"rivalry-cross-container"}>
-                        <CloseOutlined className={"rivalry-cross"} />
-                      </div>
-                    </Col>
-                  ) : (
-                    <div />
-                  )}
-                </>
-              ))}
-            </Row>
+            <RivalsRow rivals={rivals} rivalry_id={rivalry_id} />
           </Col>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
             <div className={"rivalry-about-card"}>

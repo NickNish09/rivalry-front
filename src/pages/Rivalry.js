@@ -19,6 +19,7 @@ import { isAuthenticated } from "../services/auth";
 import { openNotificationWithIcon } from "../helpers/notifications";
 import { DEFAULT_PRODUCTION_URL } from "../config/constants";
 import { copyToClipboard } from "../helpers/copyToClipboard";
+import RivalsRow from "../components/home/RivalsRow";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -100,90 +101,7 @@ const RivalryPage = ({ match }) => {
         {rivalry !== null ? (
           <Row>
             <Col md={19}>
-              <Row>
-                <Col lg={11} md={11} sm={11} xs={24}>
-                  <div className={"rivalry-like-card"}>
-                    <RivalCard
-                      name={rivalry.rivals[0].rival.name}
-                      left
-                      url={rivalry.rivals[0].rival.imageUrl}
-                    />
-                    <div>
-                      {rivalStarIndex === 0 ? (
-                        <StarFilled
-                          className={"rivalry-like"}
-                          onClick={() =>
-                            starRival(
-                              0,
-                              rivalry.rivals[0].rival._id,
-                              rivalry._id,
-                              false
-                            )
-                          }
-                        />
-                      ) : (
-                        <StarOutlined
-                          className={"rivalry-like"}
-                          onClick={() =>
-                            starRival(
-                              0,
-                              rivalry.rivals[0].rival._id,
-                              rivalry._id,
-                              true
-                            )
-                          }
-                        />
-                      )}
-                      <span className={"rivalry-likes-count"}>
-                        {rivalry.rivals[0].stars}
-                      </span>
-                    </div>
-                  </div>
-                </Col>
-                <Col lg={2} md={2} sm={2} xs={24}>
-                  <div className={"rivalry-cross-container"}>
-                    <CloseOutlined className={"rivalry-cross"} />
-                  </div>
-                </Col>
-                <Col lg={11} md={11} sm={11} xs={24}>
-                  <div className={"rivalry-like-card"}>
-                    <RivalCard
-                      name={rivalry.rivals[1].rival.name}
-                      url={rivalry.rivals[1].rival.imageUrl}
-                    />
-                    <div>
-                      {rivalStarIndex === 1 ? (
-                        <StarFilled
-                          className={"rivalry-like"}
-                          onClick={() =>
-                            starRival(
-                              1,
-                              rivalry.rivals[1].rival._id,
-                              rivalry._id,
-                              false
-                            )
-                          }
-                        />
-                      ) : (
-                        <StarOutlined
-                          className={"rivalry-like"}
-                          onClick={() =>
-                            starRival(
-                              1,
-                              rivalry.rivals[1].rival._id,
-                              rivalry._id,
-                              true
-                            )
-                          }
-                        />
-                      )}
-                      <span className={"rivalry-likes-count"}>
-                        {rivalry.rivals[1].stars}
-                      </span>
-                    </div>
-                  </div>
-                </Col>
-              </Row>
+              <RivalsRow rivalry_id={rivalry.id} rivals={rivalry.rivals} />
               <Row>
                 <div className={"tabs-container"}>
                   <div className="card-container">
