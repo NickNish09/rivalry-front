@@ -4,6 +4,15 @@
   align-items: center;
   justify-content: space-around;
   background-color: $primary_lighter;
+  @include media("<=phone") {
+    justify-content: space-between;
+  }
+}
+
+.menu-links {
+  @include media("<=phone") {
+    display: none;
+  }
 }
 
 .menu-links a{
@@ -11,11 +20,53 @@
   color: $light;
 }
 
+.menu-responsive{
+  display: none;
+  background-color: $primary_light;
+  @include media("<=phone"){
+    display: inline;
+  }
+}
+
+.menu-links-responsive{
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.menu-links-responsive a{
+  margin: 1em 1em;
+  color: $light;
+}
+
 .menu-login{
-  color: $light
+  color: $light;
+  @include media("<=phone"){
+    display: none;
+  }
+}
+
+.menu-login-responsive{
+  color: $light;
+  align-self: flex-start;
+}
+
+.divider-responsive{
+  margin-top: 0.6em;
+  color: $light;
+  border-top: 1px solid $light;
 }
 
 .menu-search-icon{
   font-size: 18px;
   color: $light;
+}
+
+.menu-menu-icon{
+  font-size: 22px;
+  color: $light;
+  display: none;
+  @include media("<=phone"){
+    display: inline;
+  }
 }
