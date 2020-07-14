@@ -30,10 +30,12 @@ export const RivalsRow = ({ rivals, rivalry_id }) => {
       .catch((err) => {
         console.log(err.response);
       });
-    if (isStaring)
+    if (isStaring) {
       // is staring, not destaring
       setRivalStarIndex(rivalId);
-    else setRivalStarIndex(null);
+    } else {
+      setRivalStarIndex(null);
+    }
   };
 
   return (
