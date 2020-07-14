@@ -188,7 +188,7 @@ const RivalryPage = ({ match }) => {
                     avatar={
                       <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
                     }
-                    title="NickNish"
+                    title={rivalry.user.name}
                     description="author"
                   />
                 </Card>
