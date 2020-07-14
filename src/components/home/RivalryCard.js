@@ -40,6 +40,7 @@ const RivalryCard = ({
   }, []);
 
   const starRival = (rivalIndex, rivalId, rivalryId, isStaring) => {
+    console.log(rivalId, rivalryId);
     if (isStaring)
       // is staring, not destaring
       setRivalStarIndex(rivalIndex);
@@ -82,61 +83,44 @@ const RivalryCard = ({
         <Row>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
             <Row>
-              <Col lg={11} md={11} sm={11} xs={24}>
-                <div className={"rivalry-like-card"}>
-                  <RivalCard left url={rivals[0].url} name={rivals[0].name} />
-                  <div className={"rivalry-like-row"}>
-                    {rivalStarIndex === 0 ? (
-                      <StarFilled
-                        className={"rivalry-like"}
-                        onClick={() =>
-                          starRival(0, rivals[0]._id, rivalry_id, false)
-                        }
-                      />
-                    ) : (
-                      <StarOutlined
-                        className={"rivalry-like"}
-                        onClick={() =>
-                          starRival(0, rivals[0]._id, rivalry_id, true)
-                        }
-                      />
-                    )}
-                    <span className={"rivalry-likes-count"}>
-                      {rivals[0].stars}
-                    </span>
-                  </div>
-                </div>
-              </Col>
-              <Col lg={2} md={2} sm={2} xs={24}>
-                <div className={"rivalry-cross-container"}>
-                  <CloseOutlined className={"rivalry-cross"} />
-                </div>
-              </Col>
-              <Col lg={11} md={11} sm={11} xs={24}>
-                <div className={"rivalry-like-card"}>
-                  <RivalCard url={rivals[1].url} name={rivals[1].name} />
-                  <div>
-                    {rivalStarIndex === 1 ? (
-                      <StarFilled
-                        className={"rivalry-like"}
-                        onClick={() =>
-                          starRival(1, rivals[1]._id, rivalry_id, false)
-                        }
-                      />
-                    ) : (
-                      <StarOutlined
-                        className={"rivalry-like"}
-                        onClick={() =>
-                          starRival(1, rivals[1]._id, rivalry_id, true)
-                        }
-                      />
-                    )}
-                    <span className={"rivalry-likes-count"}>
-                      {rivals[1].stars}
-                    </span>
-                  </div>
-                </div>
-              </Col>
+              {rivals.map((rival, index) => (
+                <>
+                  <Col lg={11} md={11} sm={11} xs={24}>
+                    <div className={"rivalry-like-card"}>
+                      <RivalCard left url={rival.url} name={rival.name} />
+                      <div className={"rivalry-like-row"}>
+                        {rivalStarIndex === index ? (
+                          <StarFilled
+                            className={"rivalry-like"}
+                            onClick={() =>
+                              starRival(index, rival._id, rivalry_id, false)
+                            }
+                          />
+                        ) : (
+                          <StarOutlined
+                            className={"rivalry-like"}
+                            onClick={() =>
+                              starRival(index, rival._id, rivalry_id, true)
+                            }
+                          />
+                        )}
+                        <span className={"rivalry-likes-count"}>
+                          {rival.stars}
+                        </span>
+                      </div>
+                    </div>
+                  </Col>
+                  {index % 2 === 0 ? (
+                    <Col lg={2} md={2} sm={2} xs={24}>
+                      <div className={"rivalry-cross-container"}>
+                        <CloseOutlined className={"rivalry-cross"} />
+                      </div>
+                    </Col>
+                  ) : (
+                    <div />
+                  )}
+                </>
+              ))}
             </Row>
           </Col>
           <Col xxl={12} xl={12} lg={12} md={24} sm={24} xs={24}>
