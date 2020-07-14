@@ -12,6 +12,9 @@ import {
 import CommentCard from "../components/rivalry/CommentCard";
 import MakeComment from "../components/rivalry/MakeComment";
 import api from "../services/api";
+import { checkIfLiked, likeRivalry } from "../services/rivalries";
+import { isAuthenticated } from "../services/auth";
+import { openNotificationWithIcon } from "../helpers/notifications";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -20,10 +23,45 @@ const RivalryPage = ({ match }) => {
   const [loading, setLoading] = useState(true);
   const [hasLikedRivalry, setHasLikedRivlary] = useState(false);
   const [rivalry, setRivalry] = useState(null);
+  const [likeCount, setLikeCount] = useState(0);
+
+  const likeCard = (isLiking) => {
+    // check if is liking or desliking, false to deslike
+    if (isAuthenticated()) {
+      // if the user is authenticated send like request
+      likeRivalry(rivalry._id)
+        .then((response) => {
+          if (isLiking) {
+            setLikeCount((prevLikeCount) => parseInt(prevLikeCount) + 1);
+          } else {
+            setLikeCount((prevLikeCount) => parseInt(prevLikeCount) - 1);
+          }
+          setHasLikedRivlary(isLiking);
+        })
+        .catch((err) => {
+          openNotificationWithIcon(
+            "error",
+            "Error liking rivalry",
+            err.response.data.error
+          );
+          console.log(err.response);
+        });
+    } else {
+      openNotificationWithIcon(
+        "error",
+        "Error liking rivalry",
+        "You must be logged in to like a rivalry"
+      );
+    }
+  };
 
   useEffect(() => {
     window.scrollTo(0, 0);
     let rivalry_id = match.params.rivalryId;
+    checkIfLiked(rivalry_id).then((response) => {
+      console.log(response.data.hasLiked);
+      setHasLikedRivlary(response.data.hasLiked);
+    });
     api
       .get(`rivalries/${rivalry_id}`)
       .then((response) => {
@@ -36,6 +74,12 @@ const RivalryPage = ({ match }) => {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (rivalry !== null) {
+      setLikeCount(rivalry.likes.length);
+    }
+  }, [rivalry]);
 
   return (
     <div className={"container"}>
@@ -119,17 +163,15 @@ const RivalryPage = ({ match }) => {
                   {hasLikedRivalry ? (
                     <HeartFilled
                       className={"rivalry-icon"}
-                      onClick={() => setHasLikedRivlary(false)}
+                      onClick={() => likeCard(false)}
                     />
                   ) : (
                     <HeartOutlined
                       className={"rivalry-icon"}
-                      onClick={() => setHasLikedRivlary(true)}
+                      onClick={() => likeCard(true)}
                     />
                   )}
-                  <span className={"rivalry-heart-count"}>
-                    {rivalry.likes.length}
-                  </span>
+                  <span className={"rivalry-heart-count"}>{likeCount}</span>
                 </div>
 
                 <TwitterOutlined className={"rivalry-icon mt-10 mb-10"} />
