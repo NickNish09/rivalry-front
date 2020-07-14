@@ -15,6 +15,7 @@ import api from "../services/api";
 import { checkIfLiked, likeRivalry } from "../services/rivalries";
 import { isAuthenticated } from "../services/auth";
 import { openNotificationWithIcon } from "../helpers/notifications";
+import { DEFAULT_PRODUCTION_URL } from "../config/constants";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -169,8 +170,24 @@ const RivalryPage = ({ match }) => {
                   <span className={"rivalry-heart-count"}>{likeCount}</span>
                 </div>
 
-                <TwitterOutlined className={"rivalry-icon mt-10 mb-10"} />
-                <FacebookOutlined className={"rivalry-icon"} />
+                <TwitterOutlined
+                  className={"rivalry-icon mt-10 mb-10"}
+                  onClick={() =>
+                    window.open(
+                      `https://twitter.com/intent/tweet?text=${rivalry.title} which one is better? Vote in ${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry._id}`,
+                      "_blank"
+                    )
+                  }
+                />
+                <FacebookOutlined
+                  className={"rivalry-icon"}
+                  onClick={() =>
+                    window.open(
+                      `https://www.facebook.com/sharer/sharer.php?u=${DEFAULT_PRODUCTION_URL}/rivalry/${rivalry._id}`,
+                      "_blank"
+                    )
+                  }
+                />
               </div>
               <Row>
                 <Col>
