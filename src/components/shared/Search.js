@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AutoComplete, Avatar, Input } from "antd";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
-import { getRivalOptions } from "../../services/rival";
+import { getAllSearch } from "../../services/search";
 
 const Search = ({ isSearching }) => {
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState([{ rivalries: [], rivals: [] }]);
   const inputEl = useRef(null);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Search = ({ isSearching }) => {
         key={id}
       >
         <div>
-          <Avatar src={url} size={"large"} className={"mr-5"} />
+          <Avatar src={url} size={"large"} className={"mr-10"} />
           {title}
         </div>
         <span>
@@ -39,16 +39,28 @@ const Search = ({ isSearching }) => {
   const formatedOptions = () => [
     {
       label: renderTitle("Rivalries"),
-      options: options.map((option) =>
-        renderItem(option.name, 0, option.imageUrl, option._id)
-      ),
+      options:
+        options.rivalries !== undefined
+          ? options.rivalries.map((option) =>
+              renderItem(option.title, 0, option.imageUrl, option._id)
+            )
+          : [],
+    },
+    {
+      label: renderTitle("Rivals"),
+      options:
+        options.rivals !== undefined
+          ? options.rivals.map((option) =>
+              renderItem(option.name, 0, option.imageUrl, option._id)
+            )
+          : [],
     },
   ];
 
-  const updateOptionsRequest = (rivalName) => {
-    getRivalOptions(rivalName)
+  const updateOptionsRequest = (query) => {
+    getAllSearch(query)
       .then((response) => {
-        setOptions(response.data.rivals);
+        setOptions(response.data);
         // console.log(response.data);
       })
       .catch((err) => console.log(err.response));
