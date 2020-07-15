@@ -16,7 +16,7 @@ const Search = ({ isSearching }) => {
   const renderTitle = (title) => <span>{title}</span>;
 
   const renderItem = (title, count, url, id) => ({
-    value: [title, url],
+    value: [title, id, "rival"],
     label: (
       <div
         style={{
@@ -36,13 +36,42 @@ const Search = ({ isSearching }) => {
     ),
   });
 
+  const renderRivalry = (title, count, url1, url2, id) => ({
+    value: [title, id, "rivalry"],
+    label: (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+        key={id}
+      >
+        <div>
+          <Avatar src={url1} size={"large"} className={"mr-10"} />
+          <CloseOutlined className={"text-light"} />
+          <Avatar src={url2} size={"large"} className={"ml-10 mr-10"} />
+          {title}
+        </div>
+        <span>
+          <CloseOutlined /> {count}
+        </span>
+      </div>
+    ),
+  });
+
   const formatedOptions = () => [
     {
       label: renderTitle("Rivalries"),
       options:
         options.rivalries !== undefined
           ? options.rivalries.map((option) =>
-              renderItem(option.title, 0, option.imageUrl, option._id)
+              renderRivalry(
+                option.title,
+                0,
+                option.rivals[0].rival.imageUrl,
+                option.rivals[1].rival.imageUrl,
+                option._id
+              )
             )
           : [],
     },
