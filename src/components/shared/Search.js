@@ -2,10 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { AutoComplete, Avatar, Input } from "antd";
 import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { getAllSearch } from "../../services/search";
+import { withRouter } from "react-router-dom";
 
-const Search = ({ isSearching }) => {
+const Search = ({ isSearching, history, setIsSearching }) => {
   const [options, setOptions] = useState([{ rivalries: [], rivals: [] }]);
   const inputEl = useRef(null);
+  const inputInside = useRef(null);
 
   useEffect(() => {
     if (isSearching) {
@@ -16,7 +18,7 @@ const Search = ({ isSearching }) => {
   const renderTitle = (title) => <span>{title}</span>;
 
   const renderItem = (title, count, url, id) => ({
-    value: [title, id, "rival"],
+    value: ["", id, "rival"],
     label: (
       <div
         style={{
@@ -29,15 +31,12 @@ const Search = ({ isSearching }) => {
           <Avatar src={url} size={"large"} className={"mr-10"} />
           {title}
         </div>
-        <span>
-          <CloseOutlined /> {count}
-        </span>
       </div>
     ),
   });
 
   const renderRivalry = (title, count, url1, url2, id) => ({
-    value: [title, id, "rivalry"],
+    value: ["", id, "rivalry"],
     label: (
       <div
         style={{
@@ -52,9 +51,6 @@ const Search = ({ isSearching }) => {
           <Avatar src={url2} size={"large"} className={"ml-10 mr-10"} />
           {title}
         </div>
-        <span>
-          <CloseOutlined /> {count}
-        </span>
       </div>
     ),
   });
@@ -108,10 +104,14 @@ const Search = ({ isSearching }) => {
           } else {
             setOptions([]);
           }
-          console.log(e);
         }}
         onSelect={(e) => {
-          console.log(e);
+          // console.log(inputInside.current);
+          // inputInside.current.value = "";
+          // inputInside.current.state.value = "";
+          let route = `/${e[2]}/${e[1]}`;
+          setIsSearching(false);
+          history.push(route); // argument 2 has the type of selected item, argument 1 has the _id
         }}
       >
         <Input
@@ -119,10 +119,11 @@ const Search = ({ isSearching }) => {
           size="middle"
           placeholder="Search for a rivalry, rival..."
           allowClear
+          ref={inputInside}
         />
       </AutoComplete>
     </div>
   );
 };
 
-export default Search;
+export default withRouter(Search);
