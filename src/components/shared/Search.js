@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AutoComplete, Avatar, Input } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { getRivalOptions } from "../../services/rival";
 
-const Search = () => {
+const Search = ({ isSearching }) => {
   const [options, setOptions] = useState([]);
+  const inputEl = useRef(null);
+
+  useEffect(() => {
+    if (isSearching) {
+      window.setTimeout(() => inputEl.current.focus(), 300);
+    }
+  }, [isSearching]);
+
   const renderTitle = (title) => <span>{title}</span>;
 
   const renderItem = (title, count, url, id) => ({
@@ -49,6 +57,7 @@ const Search = () => {
   return (
     <div className={"search-container"}>
       <AutoComplete
+        ref={inputEl}
         dropdownClassName="search-dropdown"
         options={formatedOptions()}
         className={"search-input"}
@@ -64,7 +73,12 @@ const Search = () => {
           console.log(e);
         }}
       >
-        <Input size="middle" placeholder="Search for a rivalry, rival..." />
+        <Input
+          prefix={<SearchOutlined className={"search-icon"} />}
+          size="middle"
+          placeholder="Search for a rivalry, rival..."
+          allowClear
+        />
       </AutoComplete>
     </div>
   );

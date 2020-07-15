@@ -67,7 +67,7 @@ const Header = () => {
         key={"search"}
         className={"search-drawer"}
       >
-        <Search />
+        <Search isSearching={isSearching} />
       </Drawer>
 
       <Drawer
