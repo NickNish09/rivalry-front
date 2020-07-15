@@ -78,7 +78,7 @@ const RivalryPage = ({ match }) => {
         console.log(err.response);
         setLoading(false);
       });
-  }, []);
+  }, [match.params.rivalryId]);
 
   useEffect(() => {
     if (rivalry !== null) {
