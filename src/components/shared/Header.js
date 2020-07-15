@@ -8,9 +8,11 @@ import { Link } from "react-router-dom";
 import { SearchOutlined, MenuOutlined } from "@ant-design/icons";
 import { isAuthenticated } from "../../services/auth";
 import { TOKEN_KEY } from "../../config/constants";
+import Search from "./Search";
 
 const Header = () => {
   const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   const dismissDrawer = () => {
     setOpenResponsiveMenu(false);
@@ -28,7 +30,10 @@ const Header = () => {
         </div>
 
         <div>
-          <Button type={"link"}>
+          <Button
+            type={"link"}
+            onClick={() => setIsSearching((prevValue) => !prevValue)}
+          >
             <SearchOutlined className={"menu-search-icon"} />
           </Button>
           {isAuthenticated() ? (
@@ -53,6 +58,17 @@ const Header = () => {
           />
         </div>
       </div>
+
+      <Drawer
+        placement={"top"}
+        closable={true}
+        onClose={() => setIsSearching(false)}
+        visible={isSearching}
+        key={"search"}
+        className={"search-drawer"}
+      >
+        <Search />
+      </Drawer>
 
       <Drawer
         placement={"top"}
