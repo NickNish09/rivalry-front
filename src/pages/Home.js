@@ -26,39 +26,15 @@ const Home = () => {
 
   return (
     <div className={"container"}>
-      <RivalriesList rivalries={rivalries} loading={loading} />
-      {/*<Card loading={true} className={"rivalry-card-placeholder"} />*/}
-
-      {/*<RivalryCard*/}
-      {/*  rivals={[*/}
-      {/*    {*/}
-      {/*      name: "Albert Einstein",*/}
-      {/*      url:*/}
-      {/*        "https://s2.glbimg.com/SdHUIIqJPMfSUBMVmAE3h4RMO5g=/512x320/smart/e.glbimg.com/og/ed/f/original/2016/03/14/albert-einstein-wikipedia.jpg",*/}
-      {/*    },*/}
-      {/*    {*/}
-      {/*      name: "Isac Newton",*/}
-      {/*      url:*/}
-      {/*        "https://aventurasnahistoria.uol.com.br/media/_versions/legacy/2018/12/17/capa-isaac-newton-1119743_widelg.png",*/}
-      {/*    },*/}
-      {/*  ]}*/}
-      {/*  tags={["science", "physics"]}*/}
-      {/*/>*/}
-      {/*<RivalryCard*/}
-      {/*  rivals={[*/}
-      {/*    {*/}
-      {/*      name: "L",*/}
-      {/*      url:*/}
-      {/*        "https://pm1.narvii.com/7006/4efea342a8ca346449cf44d2a78dd794bb31b020r1-320-211v2_00.jpg",*/}
-      {/*    },*/}
-      {/*    {*/}
-      {/*      name: "Kira",*/}
-      {/*      url:*/}
-      {/*        "https://cdn.myanimelist.net/r/360x360/images/characters/6/63870.jpg?s=f53551e17ec739e0cefba7a5717ebfae",*/}
-      {/*    },*/}
-      {/*  ]}*/}
-      {/*  tags={["anime", "death note"]}*/}
-      {/*/>*/}
+      {loading ? (
+        <div>
+          <Card loading={true} className={"rivalry-card-placeholder"} />
+          <Card loading={true} className={"rivalry-card-placeholder"} />
+          <Card loading={true} className={"rivalry-card-placeholder"} />
+        </div>
+      ) : (
+        <RivalriesList rivalries={rivalries} loading={loading} />
+      )}
     </div>
   );
 };
