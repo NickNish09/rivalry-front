@@ -125,17 +125,15 @@ const RivalryCard = ({
                 </div>
               </div>
               <div className={"rivalry-about-text"}>
-                <Truncate
-                  lines={3}
-                  dangerouslySetInnerHTML={{
-                    __html: about,
-                  }}
-                />
+                <div
+                  className={"all-light responsive-text"}
+                  dangerouslySetInnerHTML={{ __html: about }}
+                ></div>
               </div>
               {/*<p className={"rivalry-time"}>3 hours ago</p>*/}
               <div className={"rivalry-tags"}>
                 {tags.map((tag, index) => (
-                  <Tag key={index.toString()} className={"rivalry-tag"}>
+                  <Tag key={index.toString()} className={"rivalry-tag mt-5"}>
                     {tag.name}
                   </Tag>
                 ))}

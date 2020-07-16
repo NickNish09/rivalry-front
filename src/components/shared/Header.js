@@ -49,7 +49,7 @@ const Header = () => {
               </a>
             </Dropdown>
           ) : (
-            <Link to={"/login"} className={"menu-login"}>
+            <Link to={"/login"} className={"menu-login text-light"}>
               Login
             </Link>
           )}

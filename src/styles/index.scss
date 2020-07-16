@@ -103,6 +103,16 @@ html, body {
   object-fit: contain;
 }
 
+.all-light{
+  * {
+    color: $light
+  }
+}
+
+.responsive-text{
+  width: 100%;
+}
+
 .container{
   height: 150vh;
   margin: 0 15em;
