@@ -18,7 +18,7 @@ const Search = ({ isSearching, history, setIsSearching }) => {
   const renderTitle = (title) => <span>{title}</span>;
 
   const renderItem = (title, count, url, id) => ({
-    value: ["", id, "rival"],
+    value: ["", id, "rivals"],
     label: (
       <div
         style={{

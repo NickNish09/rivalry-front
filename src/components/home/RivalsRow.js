@@ -48,6 +48,7 @@ export const RivalsRow = ({ rivals, rivalry_id }) => {
                 left={index % 2 === 0}
                 url={rival.rival.imageUrl}
                 name={rival.rival.name}
+                id={rival.rival._id}
               />
               <RivalryStarRow
                 rival={rival}
