@@ -101,20 +101,18 @@ class NewTags extends React.Component {
             <Tag
               className="edit-tag rivalry-tag mb-5"
               key={tag}
-              closable={index !== 0}
+              closable
               onClose={() => this.handleClose(tag)}
             >
               <span
                 onDoubleClick={(e) => {
-                  if (index !== 0) {
-                    this.setState(
-                      { editInputIndex: index, editInputValue: tag },
-                      () => {
-                        this.editInput.focus();
-                      }
-                    );
-                    e.preventDefault();
-                  }
+                  this.setState(
+                    { editInputIndex: index, editInputValue: tag },
+                    () => {
+                      this.editInput.focus();
+                    }
+                  );
+                  e.preventDefault();
                 }}
               >
                 {isLongTag ? `${tag.slice(0, 20)}...` : tag}
@@ -137,8 +135,14 @@ class NewTags extends React.Component {
             className="tag-input"
             value={inputValue}
             onChange={this.handleInputChange}
-            onBlur={this.handleInputConfirm}
-            onPressEnter={this.handleInputConfirm}
+            onBlur={() => {
+              this.handleInputConfirm();
+              this.setState({ inputVisible: false });
+            }}
+            onPressEnter={() => {
+              this.handleInputConfirm();
+              this.showInput();
+            }}
           />
         )}
         {!inputVisible && (
