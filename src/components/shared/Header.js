@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Headroom from "react-headroom";
 import logo from "../../assets/thunder.png";
 
-import { Button, Divider, Drawer } from "antd";
+import { Avatar, Button, Divider, Drawer, Dropdown } from "antd";
 import { Link } from "react-router-dom";
 
 import { SearchOutlined, MenuOutlined } from "@ant-design/icons";
 import { isAuthenticated } from "../../services/auth";
 import { TOKEN_KEY } from "../../config/constants";
 import Search from "./Search";
+import MenuDropdown from "./MenuDropdown";
 
 const Header = () => {
   const [openResponsiveMenu, setOpenResponsiveMenu] = useState(false);
@@ -39,16 +40,14 @@ const Header = () => {
             <SearchOutlined className={"menu-search-icon"} />
           </Button>
           {isAuthenticated() ? (
-            <Button
-              onClick={() => {
-                localStorage.removeItem(TOKEN_KEY);
-                window.location.reload();
-              }}
-              type={"link"}
-              className={"menu-login"}
-            >
-              Leave
-            </Button>
+            <Dropdown overlay={MenuDropdown} className={"dropdown-profile"}>
+              <a
+                className="ant-dropdown-link"
+                onClick={(e) => e.preventDefault()}
+              >
+                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              </a>
+            </Dropdown>
           ) : (
             <Link to={"/login"} className={"menu-login"}>
               Login
@@ -93,6 +92,12 @@ const Header = () => {
             </Link>
             <Link to="/create" onClick={dismissDrawer}>
               Create
+            </Link>
+            <Link to={"/profile"} onClick={dismissDrawer}>
+              Profile
+            </Link>
+            <Link to={"/your-rivalries"} onClick={dismissDrawer}>
+              Your Rivalries
             </Link>
             <Divider className={"divider-responsive"} />
             {isAuthenticated() ? (

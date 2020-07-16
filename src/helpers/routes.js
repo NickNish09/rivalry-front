@@ -13,6 +13,7 @@ import Trending from "../pages/Trending";
 import TopRivalries from "../pages/TopRivalries";
 import Register from "../pages/Register";
 import RivalPage from "../pages/Rival";
+import Profile from "../pages/Profile";
 
 const Routes = () => (
   <BrowserRouter>
@@ -29,6 +30,7 @@ const Routes = () => (
           <Route path={"/top"} component={TopRivalries} />
           <NewRivalryProvider>
             <PrivateRoute path={"/create"} component={NewRivalry} />
+            <PrivateRoute path={"/profile"} component={Profile} />
           </NewRivalryProvider>
         </CurrentUserProvider>
       </Switch>

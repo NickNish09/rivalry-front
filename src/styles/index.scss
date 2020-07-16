@@ -22,6 +22,7 @@ $breakpoints: (phone_sm: 576px, //xs
 @import 'comments.scss';
 @import 'jodit.scss';
 @import 'create.scss';
+@import 'profile.scss';
 
 html, body {
   background-color: $primary;

@@ -128,8 +128,15 @@
   color: $light;
 }
 
+.dropdown-profile{
+  margin-top: -15px;
+  @include media("<=phone") {
+    display: none;
+  }
+}
+
 .menu-login{
-  color: $light;
+  color: rgba(0,0,0,0.65);
   @include media("<=phone"){
     display: none;
   }
