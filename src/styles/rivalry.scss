@@ -325,3 +325,17 @@
   color: $lighter;
   font-size: 12px;
 }
+
+.mini-rivalry-container{
+  padding: 1em;
+  margin: 1em 0;
+  background-color: $primary_light;
+  border-radius: 5px;
+}
+
+.side-rivalry{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

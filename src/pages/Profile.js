@@ -1,11 +1,85 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Avatar, Card, Col, Row } from "antd";
 import RivalriesList from "../components/home/RivalriesList";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import {
+  getRivalriesByUser,
+  getRivalriesUserLiked,
+} from "../services/rivalries";
+import { CloseOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useCurrentUser();
+  const [userRivalries, setUserRivalries] = useState([]);
+  const [likedRivalries, setLikedRivalries] = useState([]);
+
+  useEffect(() => {
+    getRivalriesByUser()
+      .then((response) => {
+        setUserRivalries(response.data.rivalries);
+        setLoading(false);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setLoading(false);
+      });
+
+    getRivalriesUserLiked()
+      .then((response) => {
+        setLikedRivalries(response.data.rivalries);
+        setLoading(false);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setLoading(false);
+      });
+  }, []);
+
+  const renderRivalry = (rivalry) => (
+    <div key={rivalry._id} className={"mini-rivalry-container"}>
+      <div>
+        <Avatar
+          src={rivalry.rivals[0].rival.imageUrl}
+          size={"large"}
+          className={"mr-10"}
+        />
+        <CloseOutlined className={"text-light"} />
+        <Avatar
+          src={rivalry.rivals[1].rival.imageUrl}
+          size={"large"}
+          className={"ml-10 mr-10"}
+        />
+        <Link to={`/rivalry/${rivalry._id}`}>
+          <span className={"text-light"}>{rivalry.title}</span>
+        </Link>
+      </div>
+    </div>
+  );
+
+  const renderSideRivalry = (rivalry) => (
+    <div key={rivalry._id} className={"mini-rivalry-container side-rivalry"}>
+      <div className={"mb-10"}>
+        <Avatar
+          src={rivalry.rivals[0].rival.imageUrl}
+          size={"large"}
+          className={"mr-10"}
+        />
+        <CloseOutlined className={"text-light"} />
+        <Avatar
+          src={rivalry.rivals[1].rival.imageUrl}
+          size={"large"}
+          className={"ml-10 mr-10"}
+        />
+      </div>
+      <Link to={`/rivalry/${rivalry._id}`}>
+        <p className={"text-light"}>{rivalry.title}</p>
+      </Link>
+    </div>
+  );
 
   return (
     <div className={"container"}>
@@ -19,9 +93,7 @@ const Profile = () => {
               <Card loading={true} className={"rivalry-card-placeholder"} />
             </div>
           ) : (
-            {
-              /*<RivalriesList rivalries={rivalries} loading={loading} />*/
-            }
+            likedRivalries.map((rivalry) => renderRivalry(rivalry))
           )}
         </Col>
         <Col xxl={1} xl={1} lg={1} md={24} sm={24} xs={24}></Col>
@@ -41,9 +113,7 @@ const Profile = () => {
               <Card loading={true} className={"rivalry-card-placeholder"} />
             </div>
           ) : (
-            {
-              /*<RivalriesList rivalries={rivalries} loading={loading} />*/
-            }
+            userRivalries.map((rivalry) => renderSideRivalry(rivalry))
           )}
         </Col>
       </Row>

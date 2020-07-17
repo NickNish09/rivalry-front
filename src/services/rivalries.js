@@ -19,3 +19,11 @@ export const checkIfLiked = (rivalryId) => {
 export const getRivalStared = (rivalryId) => {
   return api.get(`/likes/rivalStared/${rivalryId}`);
 };
+
+export const getRivalriesByUser = () => {
+  return api.get(`/rivalries/byUser`);
+};
+
+export const getRivalriesUserLiked = () => {
+  return api.get(`/rivalries/userLiked`);
+};
