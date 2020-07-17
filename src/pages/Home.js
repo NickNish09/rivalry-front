@@ -26,6 +26,7 @@ const Home = () => {
 
   return (
     <div className={"container"}>
+      <h2 className={"text-light mt-10"}>Most recent rivalries</h2>
       {loading ? (
         <div>
           <Card loading={true} className={"rivalry-card-placeholder"} />

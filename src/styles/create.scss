@@ -13,6 +13,21 @@
   color: $primary;
 }
 
+.btn-delete{
+  background-color: #ff6b6d;
+  border-color: #fff;
+  color: #fff;
+  height: 5em;
+  width: 100%;
+  margin: 1.5em 1em;
+}
+
+.btn-delete:hover{
+  background-color: #ff3139;
+  border-color: $primary;
+  color: $primary;
+}
+
 .plus-tag{
   color: $light;
 }

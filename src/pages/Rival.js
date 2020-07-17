@@ -8,12 +8,12 @@ const RivalPage = ({ match }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log(match.params.rivalId);
+    // console.log(match.params.rivalId);
     getRival(match.params.rivalId)
       .then((response) => {
         setRivalries(response.data.rival.rivalries);
         setLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((err) => {
         setLoading(false);

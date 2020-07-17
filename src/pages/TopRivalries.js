@@ -20,6 +20,7 @@ const TopRivalries = () => {
 
   return (
     <div className={"container"}>
+      <h2 className={"text-light mt-10"}>Top rivalries</h2>
       <RivalriesList rivalries={rivalries} loading={loading} />
     </div>
   );
