@@ -18,7 +18,7 @@ import { withRouter, Redirect } from "react-router-dom";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import RivalCard from "../components/home/RivalCard";
 import RivalryStarRow from "../components/home/RivalryStarRow";
-import { putUpdateRivalry } from "../services/rivalries";
+import { deleteRivalry, putUpdateRivalry } from "../services/rivalries";
 
 const { TabPane } = Tabs;
 const { Meta } = Card;
@@ -61,6 +61,26 @@ const EditRivalry = ({ history, match }) => {
     setTags([]);
     setRivals([]);
     inputEl.current.value = "";
+  };
+
+  const sendDeleteRivalryRequest = () => {
+    console.log("delete");
+    deleteRivalry(match.params.rivalryId)
+      .then((response) => {
+        openNotificationWithIcon(
+          "success",
+          "Rivalry Delete",
+          response.data.msg
+        );
+        history.push("/profile");
+      })
+      .catch((err) => {
+        openNotificationWithIcon(
+          "error",
+          "Error at deleting rivalry",
+          err.response.data.error
+        );
+      });
   };
 
   const sendUpdateRivalryRequest = () => {
@@ -182,13 +202,30 @@ const EditRivalry = ({ history, match }) => {
                 />
               </Card>
               {!loading ? (
-                <Button
-                  className={"btn-send"}
-                  onClick={sendUpdateRivalryRequest}
-                  disabled={loading}
-                >
-                  Update Rivalry!
-                </Button>
+                <>
+                  <Button
+                    className={"btn-send"}
+                    onClick={sendUpdateRivalryRequest}
+                    disabled={loading}
+                  >
+                    Update Rivalry!
+                  </Button>
+                  <Button
+                    className={"btn-delete"}
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete this rivalry?"
+                        )
+                      ) {
+                        sendDeleteRivalryRequest();
+                      }
+                    }}
+                    disabled={loading}
+                  >
+                    Delete rivalry
+                  </Button>
+                </>
               ) : (
                 <div className={"spin-container"}>
                   <Spin size="large" />

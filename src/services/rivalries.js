@@ -31,3 +31,7 @@ export const getRivalriesByUser = () => {
 export const getRivalriesUserLiked = () => {
   return api.get(`/rivalries/userLiked`);
 };
+
+export const deleteRivalry = (rivalryId) => {
+  return api.delete(`/rivalries/${rivalryId}`);
+};
