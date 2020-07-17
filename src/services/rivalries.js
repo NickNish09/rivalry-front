@@ -4,6 +4,10 @@ export const getTrendingRivalries = () => {
   return api.get("/rivalries/trending");
 };
 
+export const putUpdateRivalry = (rivalryId, updateParams) => {
+  return api.put(`/rivalries/${rivalryId}`, updateParams);
+};
+
 export const getTopRivalries = () => {
   return api.get("/rivalries/top");
 };

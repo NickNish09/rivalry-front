@@ -20,6 +20,7 @@ class NewTags extends React.Component {
     const tags = this.context.tags.filter((tag) => tag !== removedTag);
     console.log(tags);
     this.setState({ tags });
+    this.context.setTags(tags);
   };
 
   showInput = () => {

@@ -339,3 +339,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.edit-rivalry-link{
+  align-self: flex-end;
+  color: $light;
+}
+
+.edit-rivalry-link:hover{
+  color: $lighter;
+}
+
+.edit-rivalry-button{
+  background-color: $primary;
+  padding: 0.4em 0.8em;
+  border-radius: 5px;
+}

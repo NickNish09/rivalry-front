@@ -78,6 +78,9 @@ const Profile = () => {
       <Link to={`/rivalry/${rivalry._id}`}>
         <p className={"text-light"}>{rivalry.title}</p>
       </Link>
+      <Link to={`/rivalry/${rivalry._id}/edit`} className={"edit-rivalry-link"}>
+        <span className={"edit-rivalry-button"}>Edit</span>
+      </Link>
     </div>
   );
 

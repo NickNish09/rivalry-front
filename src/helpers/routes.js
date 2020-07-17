@@ -14,6 +14,7 @@ import TopRivalries from "../pages/TopRivalries";
 import Register from "../pages/Register";
 import RivalPage from "../pages/Rival";
 import Profile from "../pages/Profile";
+import EditRivalry from "../pages/EditRivalry";
 
 const Routes = () => (
   <BrowserRouter>
@@ -24,12 +25,17 @@ const Routes = () => (
           <Route exact path={"/"} component={Home} />
           <Route path={"/login"} component={Login} />
           <Route path={"/register"} component={Register} />
-          <Route path={"/rivalry/:rivalryId"} component={RivalryPage} />
+          <Route path={"/rivalry/:rivalryId"} component={RivalryPage} exact />
           <Route path={"/rivals/:rivalId"} component={RivalPage} />
           <Route path={"/trending"} component={Trending} />
           <Route path={"/top"} component={TopRivalries} />
           <NewRivalryProvider>
             <PrivateRoute path={"/create"} component={NewRivalry} />
+            <PrivateRoute
+              path={"/rivalry/:rivalryId/edit"}
+              component={EditRivalry}
+              exact
+            />
             <PrivateRoute path={"/profile"} component={Profile} />
           </NewRivalryProvider>
         </CurrentUserProvider>
