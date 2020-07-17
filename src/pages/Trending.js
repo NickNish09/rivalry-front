@@ -20,6 +20,7 @@ const Trending = () => {
 
   return (
     <div className={"container"}>
+      <h2 className={"text-light mt-10"}>Trending rivalries</h2>
       <RivalriesList rivalries={rivalries} loading={loading} />
     </div>
   );

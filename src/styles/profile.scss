@@ -1,0 +1,18 @@
+.profile-card{
+  background-color: $primary_light;
+  border-radius: 10px;
+  border-color: transparent;
+}
+
+.profile-info{
+  display: flex;
+  align-items: center;
+  p{
+    color: $light;
+    margin: 0;
+    padding: 0;
+  }
+  .profile-name{
+    margin-left: 10px;
+  }
+}

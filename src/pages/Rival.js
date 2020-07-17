@@ -1,32 +1,28 @@
 import React, { useEffect, useState } from "react";
-import api from "../services/api";
-import RivalriesList from "../components/home/RivalriesList";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { getRival } from "../services/rival";
 import { Card } from "antd";
+import RivalriesList from "../components/home/RivalriesList";
 
-const Home = () => {
+const RivalPage = ({ match }) => {
   const [rivalries, setRivalries] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { user } = useCurrentUser();
 
   useEffect(() => {
-    console.log(user);
-    api
-      .get("rivalries")
+    // console.log(match.params.rivalId);
+    getRival(match.params.rivalId)
       .then((response) => {
-        setRivalries(response.data.rivalries);
+        setRivalries(response.data.rival.rivalries);
         setLoading(false);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((err) => {
         setLoading(false);
         console.log(err.response);
       });
-  }, []);
+  }, [match.params.rivalId]);
 
   return (
     <div className={"container"}>
-      <h2 className={"text-light mt-10"}>Most recent rivalries</h2>
       {loading ? (
         <div>
           <Card loading={true} className={"rivalry-card-placeholder"} />
@@ -40,4 +36,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default RivalPage;

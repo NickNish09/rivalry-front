@@ -11,7 +11,7 @@ const RivalriesList = ({ rivalries, loading }) => {
           rivals={rivalry.rivals}
           tags={rivalry.tags}
           about={rivalry.about}
-          likes_count={`${rivalry.likes.length}`}
+          likes_count={`${rivalry.likesCount}`}
           rivalry_id={rivalry._id}
           title={rivalry.title}
         />
